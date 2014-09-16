@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('letusgoApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+angular.module('ngLetusgoApp')
+  .controller('MainCtrl', function ($scope, $location, productService) {
+
+    productService.setSortToLocal();
+    productService.setToLocal();
+
+    $scope.totalCount = productService.getTotalCount();
   });
