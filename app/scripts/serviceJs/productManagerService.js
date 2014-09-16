@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp').service('productManagerService', function (fromLocal, $location) {
+angular.module('letusgo').service('productManagerService', function (fromLocal, $location) {
   var items = fromLocal.getData('allProduct');
   this.delete = function (p_name) {
 
@@ -65,4 +65,3 @@ angular.module('ngLetusgoApp').service('productManagerService', function (fromLo
     }
   }
 });
-

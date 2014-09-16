@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
   .controller('sortManagerCtrl', function ($scope, fromLocal, $location, sortManagerService) {
     $scope.sorts = sortManagerService.getAllSorts();
     $scope.addSort = function () {

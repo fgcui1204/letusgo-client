@@ -1,6 +1,6 @@
-angular.module('ngLetusgoApp').service('sortManagerService', function (fromLocal, $location) {
+angular.module('letusgo').service('sortManagerService', function (fromLocal, $location) {
   var allSorts = fromLocal.getData('allSort');
-  
+
   this.getAllSorts = function () {
     return fromLocal.getData('allSort');
   };

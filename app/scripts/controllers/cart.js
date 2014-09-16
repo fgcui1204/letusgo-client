@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
     .controller('CartCtrl', function ($scope,fromLocal,cartService,productService) {
         $scope.cartItems = fromLocal.getData("cartProduct");
 

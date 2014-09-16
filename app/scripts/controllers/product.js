@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
     .controller('ProCtrl', function ($scope,fromLocal,productService) {
 
 

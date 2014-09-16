@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp').service('fromLocal', function () {
+angular.module('letusgo').service('fromLocal', function () {
   this.getData = function (local) {
     return JSON.parse(localStorage.getItem(local));
   };

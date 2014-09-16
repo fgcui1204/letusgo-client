@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
   .controller('updateProduct', function ($scope,fromLocal,productManagerService,$routeParams,$location) {
     $scope.allSorts = productManagerService.getAllSort();
     var item = productManagerService.getProductByName($routeParams.name);

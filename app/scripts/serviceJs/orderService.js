@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp').service('orderService', function ($location,fromLocal) {
+angular.module('letusgo').service('orderService', function ($location,fromLocal) {
     this.remove = function(){
         localStorage.removeItem('cartProduct');
         fromLocal.setData('totalCount',0);

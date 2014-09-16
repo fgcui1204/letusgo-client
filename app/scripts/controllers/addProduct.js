@@ -1,5 +1,5 @@
 
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
   .controller('addProductCtrl', function ($scope,fromLocal,productManagerService,$location) {
     $scope.allSorts = productManagerService.getAllSort();
 

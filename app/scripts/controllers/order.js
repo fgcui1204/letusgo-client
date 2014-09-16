@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
     .controller('OrderCtrl', function ($scope,fromLocal,cartService,productService,orderService) {
         $scope.orderItems = fromLocal.getData("cartProduct");
 
@@ -12,4 +12,3 @@ angular.module('ngLetusgoApp')
 
         }
     });
-

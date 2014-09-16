@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
   .controller('MainCtrl', function ($scope, $location, productService) {
 
     productService.setSortToLocal();

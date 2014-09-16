@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
   .controller('ProductManagerCtrl', function ($scope,fromLocal,productManagerService) {
 
     $scope.products = fromLocal.getData("allProduct");;

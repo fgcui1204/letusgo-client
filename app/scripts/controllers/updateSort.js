@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp')
+angular.module('letusgo')
   .controller('updateSort', function ($scope,fromLocal,sortManagerService,$routeParams,$location) {
     $scope.sort = sortManagerService.getSortById($routeParams.sid)[0];
 

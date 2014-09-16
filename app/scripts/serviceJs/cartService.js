@@ -1,4 +1,4 @@
-angular.module('ngLetusgoApp').service('cartService', function (fromLocal, productService) {
+angular.module('letusgo').service('cartService', function (fromLocal, productService) {
   var cartItem = fromLocal.getData('cartProduct');
   this.cart_Item_count_not_0 = [];
 
