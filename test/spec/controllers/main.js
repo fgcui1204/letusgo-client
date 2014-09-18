@@ -1,22 +1,30 @@
 'use strict';
 
 describe('Controller: MainCtrl', function () {
+  var $scope, productService, createController;
 
-  // load the controller's module
-  beforeEach(module('letusgoApp'));
+  beforeEach(function () {
+    module('ngLetusgoApp');
 
-  var MainCtrl,
-    scope;
+    inject(function ($injector) {
+      $scope = $injector.get('$rootScope').$new();
+      productService = $injector.get('productService');
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+      var $controller = $injector.get('$controller');
+
+      createController = function () {
+        return $controller('MainCtrl', {
+          $scope: $scope,
+          productService: productService
+        });
+      };
     });
-  }));
+  });
+
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+    spyOn(productService, "getTotalCount").andReturn(2);
+    createController();
+    expect($scope.totalCount).toBe(2);
   });
 });
