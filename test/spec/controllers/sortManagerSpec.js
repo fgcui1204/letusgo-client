@@ -27,14 +27,14 @@ describe("sortManagerCtrl",function() {
   });
 
   it ('it should load all sort', function () {
-    spyOn(fromLocal,'getData').andReturn(allSort);
+    spyOn(fromLocal,'getData').and.returnValue(allSort);
     createController();
     expect($scope.sorts).toEqual(allSort);
   });
 
   it ('it should add sort', function () {
     $scope.sort = {sid:'3',sname:'服装'};
-    spyOn(fromLocal,'getData').andReturn(allSort);
+    spyOn(fromLocal,'getData').and.returnValue(allSort);
     createController();
     $scope.addSort();
     expect(allSort.length).toEqual(3);
@@ -47,8 +47,8 @@ describe("sortManagerCtrl",function() {
   });
 
   it ('it should delete the sort', function () {
-    spyOn(sortManagerService,'delete').andReturn(allSort);
-    spyOn(fromLocal,'getData').andReturn(allSort);
+    spyOn(sortManagerService,'delete').and.returnValue(allSort);
+    spyOn(fromLocal,'getData').and.returnValue(allSort);
     createController();
     var sort = {sid:'1',sname:'水果'};
     $scope.delete(sort);

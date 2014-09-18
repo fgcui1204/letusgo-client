@@ -23,7 +23,7 @@ describe('Controller: MainCtrl', function () {
 
 
   it('should attach a list of awesomeThings to the scope', function () {
-    spyOn(productService, "getTotalCount").andReturn(2);
+    spyOn(productService, "getTotalCount").and.returnValue(2);
     createController();
     expect($scope.totalCount).toBe(2);
   });

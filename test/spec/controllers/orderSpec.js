@@ -30,19 +30,19 @@ describe("cartCtrl",function() {
     });
   });
   it('test the orderItems',function(){
-    spyOn(fromLocal,'getData').andReturn(cartProduct);
+    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
     createController();
     expect($scope.orderItems.length).toEqual(2);
   });
   it('test the totalMoney',function(){
-    spyOn(fromLocal,'getData').andReturn(cartProduct);
-    spyOn(cartService,'getTotalMoney').andReturn(10);
+    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
+    spyOn(cartService,'getTotalMoney').and.returnValue(10);
     createController();
     expect($scope.totalMoney).toEqual(10);
   });
   it('test the remove()',function(){
-    spyOn(fromLocal,'getData').andReturn(cartProduct);
-    spyOn(cartService,'getTotalMoney').andReturn(10);
+    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
+    spyOn(cartService,'getTotalMoney').and.returnValue(10);
     spyOn(orderService,'remove');
     createController();
     $scope.remove();

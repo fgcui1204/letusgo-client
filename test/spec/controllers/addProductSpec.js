@@ -50,7 +50,7 @@ describe("addProductCtrl", function () {
       p_name: '梨',
       p_price: '5',
       p_unit: '千克'};
-    spyOn(productManagerService,'productInfo').andReturn(productInfo);
+    spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
     spyOn(productManagerService,'addProduct');
     createController();
     $scope.addProduct();

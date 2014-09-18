@@ -28,14 +28,14 @@ describe("ProductManagerCtrl",function() {
   });
 
   it ('it should load all product', function () {
-    spyOn(fromLocal,'getData').andReturn(allProduct);
+    spyOn(fromLocal,'getData').and.returnValue(allProduct);
     createController();
     expect($scope.products).toEqual(allProduct);
   });
 
   it ('it should delete the product', function () {
-    spyOn(productManagerService,'delete').andReturn(allProduct);
-    spyOn(fromLocal,'getData').andReturn(allProduct);
+    spyOn(productManagerService,'delete').and.returnValue(allProduct);
+    spyOn(fromLocal,'getData').and.returnValue(allProduct);
     createController();
     var pname = '苹果';
     $scope.delete(pname);

@@ -20,14 +20,14 @@ describe("productService", function () {
 
   it('it should do product save to localstorage', function () {
     spyOn(fromLocal, 'setData');
-    spyOn(productService, 'product').andReturn([]);
+    spyOn(productService, 'product').and.returnValue([]);
     productService.setToLocal();
     expect(fromLocal.setData).toHaveBeenCalledWith('allProduct', []);
   });
 
   it('when cart is null,the total count in cart is one', function () {
     // spyOn(fromLocal,'getData');
-    spyOn(fromLocal, 'getData').andReturn(null);
+    spyOn(fromLocal, 'getData').and.returnValue(null);
     productService.getTotalCount();
     expect(fromLocal.getData.calls.length).toBe(1);
     expect(productService.getTotalCount()).toBe(0);
@@ -35,7 +35,7 @@ describe("productService", function () {
 
   it('calculate the total count in cart when cart is not null', function () {
     var cartItem = [{p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克', count: 2}];
-    spyOn(fromLocal, 'getData').andReturn(cartItem);
+    spyOn(fromLocal, 'getData').and.returnValue(cartItem);
     productService.getTotalCount();
     expect(fromLocal.getData.calls.length).toBe(1);
     expect(productService.getTotalCount()).toBe(2);
@@ -43,7 +43,7 @@ describe("productService", function () {
 
   it('the function of getData is called one ', function () {
     var productItem = {p_sort:'水果',p_name:'苹果',p_price:'10',p_unit:'千克'};
-    spyOn(fromLocal, 'getData').andReturn(null);
+    spyOn(fromLocal, 'getData').and.returnValue(null);
     spyOn(productService,'getTotalCount').andReturn(0);
     productService.addToCart(productItem);
     expect(fromLocal.getData.calls.length).toBe(1);
@@ -52,14 +52,14 @@ describe("productService", function () {
   it('this item has been in cart ,so the count add one', function () {
     var productItem = {p_sort:'水果',p_name:'苹果',p_price:'10',p_unit:'千克'};
     var cartItem = [{p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克', count: 2}];
-    spyOn(fromLocal, 'getData').andReturn(cartItem);
+    spyOn(fromLocal, 'getData').and.returnValue(cartItem);
     productService.addToCart(productItem);
     expect(cartItem[0].count).toBe(3);
   });
   it('cart should add a new item and the setData should called two times', function () {
     var productItem = {p_sort:'水果',p_name:'苹果',p_price:'10',p_unit:'千克'};
     var cartItem = [{p_sort: '水果', p_name: '香蕉', p_price: '5', p_unit: '千克', count: 2}];
-    spyOn(fromLocal, 'getData').andReturn(cartItem);
+    spyOn(fromLocal, 'getData').and.returnValue(cartItem);
     spyOn(fromLocal,'setData');
     productService.addToCart(productItem);
     expect(fromLocal.setData.calls.length).toBe(2)

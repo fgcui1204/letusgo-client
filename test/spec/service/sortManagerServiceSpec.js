@@ -17,7 +17,7 @@ describe("sortManagerServiceSpec", function () {
   });
 
   it('it should getAllSorts', function () {
-    spyOn(fromLocal, 'getData').andReturn(sorts);
+    spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var allSorts = sortManagerService.getAllSorts();
     expect(allSorts.length).toBe(2);
     expect(fromLocal.getData.calls.length).toBe(1);
@@ -25,7 +25,7 @@ describe("sortManagerServiceSpec", function () {
 
   it('it should be delete', function () {
     var sort = {sid:'1',sname:'水果'};
-    spyOn(fromLocal, 'getData').andReturn(sorts);
+    spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var afterDeleteSort = sortManagerService.delete(sort);
     expect(afterDeleteSort.length).toBe(1);
     expect(fromLocal.getData.calls.length).toBe(1);
@@ -33,7 +33,7 @@ describe("sortManagerServiceSpec", function () {
 
   it('if the sort not in sorts ,it should not be deleted', function () {
     var sort = {sid:'3',sname:'服装'};
-    spyOn(fromLocal, 'getData').andReturn(sorts);
+    spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var afterDeleteSort = sortManagerService.delete(sort);
     expect(afterDeleteSort.length).toBe(2);
     expect(fromLocal.getData.calls.length).toBe(1);
@@ -46,7 +46,7 @@ describe("sortManagerServiceSpec", function () {
   });
 
   it('test get sort by id', function () {
-    spyOn(fromLocal, 'getData').andReturn(sorts);
+    spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var sort = sortManagerService.getSortById('1');
     expect(fromLocal.getData.calls.length).toBe(1);
     expect(sort[0].sname).toBe('水果');
@@ -61,7 +61,7 @@ describe("sortManagerServiceSpec", function () {
   });
 
   it('test the update failure', function () {
-    spyOn(fromLocal, 'getData').andReturn(sorts);
+    spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var sort = {sid:'3',sname:'服装'};
     var afterUpdateSort = sortManagerService.doUpdate(sort);
     expect(fromLocal.getData.calls.length).toBe(1);

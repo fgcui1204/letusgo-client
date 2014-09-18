@@ -27,7 +27,7 @@ describe("updateSort",function() {
   });
   xit ('it should get sort by id', function () {
     var sort = {sid:'1',sname:'水果'};
-    spyOn(sortManagerService,'getSortById').andReturn(sort);
+    spyOn(sortManagerService,'getSortById').and.returnValue(sort);
     $routeParams.sid = 1;
     createController();
     expect($scope.sort).toEqual(sort);
@@ -35,7 +35,7 @@ describe("updateSort",function() {
 
   xit ('it should update sort info', function () {
     $scope.sort = {sid:'1',sname:'服装'};
-    spyOn(sortManagerService,'doUpdate').andReturn(allSort);
+    spyOn(sortManagerService,'doUpdate').and.returnValue(allSort);
     createController();
     console.log(allSort);
     expect($scope.sort).toEqual(sort);

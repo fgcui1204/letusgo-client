@@ -27,7 +27,7 @@ describe("cartCtrl",function() {
     });
   });
   it('the function of getData should be excuted ',function(){
-    spyOn(fromLocal,'getData').andReturn(cartProduct);
+    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
     spyOn(productService,'getTotalCount');
     spyOn(cartService,'getTotalMoney');
     createController();
@@ -35,18 +35,18 @@ describe("cartCtrl",function() {
     expect($scope.cartItems.length).toBe(2);
   });
   it('totalMoney should be 20 ',function(){
-    spyOn(fromLocal,'getData').andReturn(cartProduct);
+    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
     spyOn(productService,'getTotalCount');
-    spyOn(cartService,'getTotalMoney').andReturn(20);
+    spyOn(cartService,'getTotalMoney').and.returnValue(20);
     createController();
     expect(cartService.getTotalMoney.calls.length).toBe(1);
     expect($scope.totalMoney).toBe(20);
   });
   it('the function changeCount() ',function(){
     var item = [{p_sort:'水果',p_name:'苹果',p_price:'10',p_unit:'千克',count:2}];
-    spyOn(fromLocal,'getData').andReturn(cartProduct);
+    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
     spyOn(productService,'getTotalCount');
-    spyOn(cartService,'getTotalMoney').andReturn(20);
+    spyOn(cartService,'getTotalMoney').and.returnValue(20);
     spyOn(cartService,'changeCount');
     createController();
     $scope.changeCount(item);

@@ -29,14 +29,14 @@ describe("updateProduct",function() {
 
   });
   it ('it should load all sorts', function () {
-    spyOn(productManagerService,'getAllSort').andReturn(allSort);
+    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     $routeParams.name = '苹果';
     createController();
     expect($scope.allSorts).toEqual(allSort);
   });
 
   it ('it should get product by name', function () {
-    spyOn(productManagerService,'getAllSort').andReturn(allSort);
+    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     $routeParams.name = '苹果';
     createController();
     expect($scope.productInfo).toEqual({p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克'});

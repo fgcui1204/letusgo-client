@@ -25,7 +25,7 @@ describe("CartService", function () {
   });
 
   it('total money should be 29',function(){
-    spyOn(fromLocal,'getData')..and.returnValue(cartItem);
+    spyOn(fromLocal,'getData').and.returnValue(cartItem);
     var totalMoney = cartService.getTotalMoney();
     expect(fromLocal.getData.calls.length).toBe(1);
     expect(totalMoney).toEqual(39);
@@ -43,7 +43,7 @@ describe("CartService", function () {
 
   it('when the count is 0,cartProduct should delete this product',function(){
     var item = {p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克',count: 0};
-    spyOn(fromLocal,'getData')..and.returnValue(cartItem);
+    spyOn(fromLocal,'getData').and.returnValue(cartItem);
     spyOn(fromLocal,'setData');
     cartService.changeCount(item);
     expect(cartService.cartItemCountNotZero.length).toEqual(1);

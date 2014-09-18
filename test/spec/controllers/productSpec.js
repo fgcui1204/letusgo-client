@@ -25,7 +25,7 @@ describe("productCtrl",function(){
         {p_sort:'水果',p_name:'香蕉',p_price:'5',p_unit:'千克'}];
         spyOn(productService,'setToLocal');
         spyOn(productService,'addToCart');
-        spyOn(fromLocal,'getData').andReturn(allProduct);
+        spyOn(fromLocal,'getData').and.returnValue(allProduct);
         createController();
         $scope.addToCart(allProduct[0]);
         expect($scope.products.length).toBe(2);
