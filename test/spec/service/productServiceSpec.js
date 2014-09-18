@@ -3,7 +3,7 @@
 describe("productService", function () {
   var fromLocal, productService;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
 
     inject(function ($injector) {
       productService = $injector.get("productService");
@@ -29,7 +29,7 @@ describe("productService", function () {
     // spyOn(fromLocal,'getData');
     spyOn(fromLocal, 'getData').and.returnValue(null);
     productService.getTotalCount();
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
     expect(productService.getTotalCount()).toBe(0);
   });
 
@@ -37,16 +37,16 @@ describe("productService", function () {
     var cartItem = [{p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克', count: 2}];
     spyOn(fromLocal, 'getData').and.returnValue(cartItem);
     productService.getTotalCount();
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
     expect(productService.getTotalCount()).toBe(2);
   });
 
   it('the function of getData is called one ', function () {
     var productItem = {p_sort:'水果',p_name:'苹果',p_price:'10',p_unit:'千克'};
     spyOn(fromLocal, 'getData').and.returnValue(null);
-    spyOn(productService,'getTotalCount').andReturn(0);
+    spyOn(productService,'getTotalCount').and.returnValue(0);
     productService.addToCart(productItem);
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
   });
 
   it('this item has been in cart ,so the count add one', function () {
@@ -62,7 +62,7 @@ describe("productService", function () {
     spyOn(fromLocal, 'getData').and.returnValue(cartItem);
     spyOn(fromLocal,'setData');
     productService.addToCart(productItem);
-    expect(fromLocal.setData.calls.length).toBe(2)
+    expect(fromLocal.setData.calls.count()).toBe(2)
     expect(cartItem.length).toEqual(2);
     expect(cartItem[1].count).toBe(1);
   });

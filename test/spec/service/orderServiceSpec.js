@@ -3,7 +3,7 @@
 describe("CartService", function () {
   var $location,orderService, fromLocal;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
 
     inject(function ($injector) {
       $location = $injector.get('$location');

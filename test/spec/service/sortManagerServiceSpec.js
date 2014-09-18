@@ -3,7 +3,7 @@
 describe("sortManagerServiceSpec", function () {
   var fromLocal, sortManagerService, sorts;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
 
     inject(function ($injector) {
       sortManagerService = $injector.get("sortManagerService");
@@ -20,7 +20,7 @@ describe("sortManagerServiceSpec", function () {
     spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var allSorts = sortManagerService.getAllSorts();
     expect(allSorts.length).toBe(2);
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
   });
 
   it('it should be delete', function () {
@@ -28,7 +28,7 @@ describe("sortManagerServiceSpec", function () {
     spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var afterDeleteSort = sortManagerService.delete(sort);
     expect(afterDeleteSort.length).toBe(1);
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
   });
 
   it('if the sort not in sorts ,it should not be deleted', function () {
@@ -36,7 +36,7 @@ describe("sortManagerServiceSpec", function () {
     spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var afterDeleteSort = sortManagerService.delete(sort);
     expect(afterDeleteSort.length).toBe(2);
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
   });
 
   it('when to update,it should bring sid', function () {
@@ -48,23 +48,23 @@ describe("sortManagerServiceSpec", function () {
   it('test get sort by id', function () {
     spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var sort = sortManagerService.getSortById('1');
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
     expect(sort[0].sname).toBe('水果');
   });
 
   it('test the update', function () {
-    spyOn(fromLocal, 'getData').andReturn(sorts);
+    spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var sort = {sid:'1',sname:'服装'};
     var afterUpdateSort = sortManagerService.doUpdate(sort);
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
     expect(afterUpdateSort[0].sname).toBe('服装');
   });
 
   it('test the update failure', function () {
-    spyOn(fromLocal, 'getData').and.returnValue(sorts);
+    spyOn(fromLocal, 'getData').and.returnValue(sorts)
     var sort = {sid:'3',sname:'服装'};
     var afterUpdateSort = sortManagerService.doUpdate(sort);
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
     expect(afterUpdateSort[0].sname).toBe('水果');
   });
 
