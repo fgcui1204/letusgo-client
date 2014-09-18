@@ -3,7 +3,7 @@
 describe("addProductCtrl", function () {
   var $scope, fromLocal, productManagerService, $location, createController, allSort,allProduct;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       fromLocal = $injector.get('fromLocal');
@@ -28,23 +28,25 @@ describe("addProductCtrl", function () {
     allSort = ['水果','饮料'];
   });
   it ('it should load all sorts', function () {
-    spyOn(productManagerService,'getAllSort').andReturn(allSort);
+    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     createController();
     expect($scope.allSorts).toEqual(allSort);
   });
 
   it ('productInfo should be a object', function () {
+    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     var productInfo = {
       p_sort: '',
       p_name: '',
       p_price: '',
       p_unit: ''};
-    spyOn(productManagerService,'productInfo').andReturn(productInfo);
+    spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
     createController();
     expect($scope.productInfo).toEqual(productInfo);
   });
 
   it ('it should add product', function () {
+    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     var productInfo = {
       p_sort: '水果',
       p_name: '梨',
@@ -59,6 +61,7 @@ describe("addProductCtrl", function () {
   });
 
   it('should come into productManager after add product', function () {
+    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     createController();
     $scope.addProduct();
     expect($location.path() === '/productManager').toBe(true);

@@ -3,7 +3,7 @@
 describe("cartCtrl",function() {
   var $scope, fromLocal, productService, createController,cartService,cartProduct;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       fromLocal = $injector.get('fromLocal');
@@ -31,7 +31,7 @@ describe("cartCtrl",function() {
     spyOn(productService,'getTotalCount');
     spyOn(cartService,'getTotalMoney');
     createController();
-    expect(fromLocal.getData.calls.length).toBe(1);
+    expect(fromLocal.getData.calls.count()).toBe(1);
     expect($scope.cartItems.length).toBe(2);
   });
   it('totalMoney should be 20 ',function(){
@@ -39,7 +39,7 @@ describe("cartCtrl",function() {
     spyOn(productService,'getTotalCount');
     spyOn(cartService,'getTotalMoney').and.returnValue(20);
     createController();
-    expect(cartService.getTotalMoney.calls.length).toBe(1);
+    expect(cartService.getTotalMoney.calls.count()).toBe(1);
     expect($scope.totalMoney).toBe(20);
   });
   it('the function changeCount() ',function(){
@@ -50,7 +50,7 @@ describe("cartCtrl",function() {
     spyOn(cartService,'changeCount');
     createController();
     $scope.changeCount(item);
-    expect(cartService.changeCount.calls.length).toBe(1);
+    expect(cartService.changeCount.calls.count()).toBe(1);
     //expect($scope.totalMoney).toBe(20);
   });
 

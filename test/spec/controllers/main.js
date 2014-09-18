@@ -4,7 +4,7 @@ describe('Controller: MainCtrl', function () {
   var $scope, productService, createController;
 
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
 
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();

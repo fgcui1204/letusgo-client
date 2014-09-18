@@ -3,7 +3,7 @@
 describe("cartCtrl",function() {
   var $scope, fromLocal, productService, createController, cartService, cartProduct,orderService;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       fromLocal = $injector.get('fromLocal');
@@ -46,7 +46,7 @@ describe("cartCtrl",function() {
     spyOn(orderService,'remove');
     createController();
     $scope.remove();
-    expect(orderService.remove.calls.length).toBe(1);
+    expect(orderService.remove.calls.count()).toBe(1);
     expect($scope.totalMoney).toEqual(10);
   });
 });

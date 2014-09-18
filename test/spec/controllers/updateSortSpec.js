@@ -3,7 +3,7 @@
 describe("updateSort",function() {
   var $scope, fromLocal, $location,sortManagerService, $routeParams, createController, allProduct, allSort;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');

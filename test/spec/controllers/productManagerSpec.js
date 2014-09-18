@@ -3,7 +3,7 @@
 describe("ProductManagerCtrl",function() {
   var $scope, fromLocal, productManagerService,$location, createController,allProduct;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       fromLocal = $injector.get('fromLocal');

@@ -2,7 +2,7 @@
 describe("sortManagerCtrl",function() {
   var $scope, fromLocal, sortManagerService, $location, createController, allSort;
   beforeEach(function () {
-    module('ngLetusgoApp');
+    module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       fromLocal = $injector.get('fromLocal');

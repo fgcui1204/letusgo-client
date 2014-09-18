@@ -3,7 +3,7 @@
 describe("productCtrl",function(){
     var $scope,fromLocal,productService,createController;
     beforeEach(function () {
-        module('ngLetusgoApp');
+        module('letusgo');
         inject(function ($injector){
             $scope = $injector.get('$rootScope').$new();
             fromLocal = $injector.get('fromLocal');
@@ -29,6 +29,6 @@ describe("productCtrl",function(){
         createController();
         $scope.addToCart(allProduct[0]);
         expect($scope.products.length).toBe(2);
-        expect(productService.addToCart.calls.length).toBe(1);
+        expect(productService.addToCart.calls.count()).toBe(1);
     });
 });
