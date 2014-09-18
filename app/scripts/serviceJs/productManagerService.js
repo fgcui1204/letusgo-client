@@ -1,7 +1,6 @@
 angular.module('letusgo').service('productManagerService', function (fromLocal, $location) {
-  var items = fromLocal.getData('allProduct');
   this.delete = function (p_name) {
-
+    var items = fromLocal.getData('allProduct');
     var afterDeleteItems = _.filter(items, function (item) {
       return item.p_name != p_name;
     });
@@ -13,6 +12,7 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
   };
 
   this.getAllSort = function () {
+
     var allSort = fromLocal.getData('allSort');
     var sorts = [];
     _.forEach(allSort, function (sort) {
@@ -35,6 +35,7 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
   };
 
   this.getProductByName = function (pname) {
+    var items = fromLocal.getData('allProduct');
     return _.filter(items, { 'p_name': pname });
   };
 
@@ -51,6 +52,7 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
   };
 
   this.addProduct = function (product) {
+    var items = fromLocal.getData('allProduct');
     var isTheRepeat = [];
     _.forEach(items, function (item) {
       if (item.p_name === product.p_name) {
@@ -59,7 +61,7 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
     });
     if (isTheRepeat == '') {
       items.push(product);
-      fromLocal.setData('allProduct', allProducts);
+      fromLocal.setData('allProduct', items);
     } else {
       alert(isTheRepeat + '已存在，不能重复添加');
     }
