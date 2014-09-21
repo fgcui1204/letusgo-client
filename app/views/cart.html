@@ -15,14 +15,14 @@
             <div class="panel-body" ng-repeat="cartItem in cartItems">
 
                 <div class="row text-center">
-                    <div class="col-md-1">{{cartItem.p_sort}}</div>
-                    <div class="col-md-3">{{cartItem.p_name}}</div>
-                    <div class="col-md-3">{{cartItem.p_price}}</div>
+                    <div class="col-md-1">{{cartItem.productSort}}</div>
+                    <div class="col-md-3">{{cartItem.productName}}</div>
+                    <div class="col-md-3">{{cartItem.productPrice}}</div>
                     <div class="col-md-3 form-inline num">
                         <input type="number" min='0' ng-model="cartItem.count" ng-change="changeCount(cartItem)" value="{{cartItem.count}}">
                     </div>
                     <div class="col-md-2">
-                       {{cartItem.p_price*cartItem.count}}
+                       {{cartItem.productPrice*cartItem.count}}
                     </div>
                 </div>
             </div>

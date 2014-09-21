@@ -1,4 +1,4 @@
-
+'use strict';
 angular.module('letusgo')
   .controller('addProductCtrl', function ($scope,fromLocal,productManagerService,$location) {
     $scope.allSorts = productManagerService.getAllSort();
@@ -9,5 +9,5 @@ angular.module('letusgo')
       productManagerService.addProduct(productInfo);
 
       $location.path('/productManager');
-    }
+    };
   });

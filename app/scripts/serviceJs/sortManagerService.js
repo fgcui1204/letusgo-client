@@ -1,3 +1,4 @@
+'use strict';
 angular.module('letusgo').service('sortManagerService', function (fromLocal, $location) {
 
   this.getAllSorts = function () {
@@ -7,7 +8,7 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
   this.delete = function (sort) {
     var allSorts = fromLocal.getData('allSort');
     var afterDeleteSorts = _.filter(allSorts, function (sorts) {
-      return sorts.sname != sort.sname;
+      return sorts.sid !== sort.sid;
     });
     fromLocal.setData('allSort', afterDeleteSorts);
     return afterDeleteSorts;
@@ -26,12 +27,36 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
   this.doUpdate = function (sort) {
     var allSorts = fromLocal.getData('allSort');
     _.forEach(allSorts, function (sorts) {
-      if (sorts.sid == sort.sid) {
+      if (sorts.sid === sort.sid) {
         sorts.sname = sort.sname;
       }
     });
     fromLocal.setData('allSort', allSorts);
     return allSorts;
-  }
+  };
+
+  this.sortInfo = function () {
+    return {
+      sid:'',
+      sname: ''
+    };
+  };
+
+  this.addSort = function (sort) {
+    var sorts = fromLocal.getData('allSort');
+    var isTheRepeat = [];
+    _.forEach(sorts, function (s) {
+      if (s.sname === sort.sname) {
+        isTheRepeat = s.sname;
+      }
+    });
+    if (isTheRepeat.toString() === '') {
+      sort.sid = parseInt(sorts[sorts.length-1].sid)+1+'';
+      sorts.push(sort);
+      fromLocal.setData('allSort', sorts);
+    } else {
+      alert(isTheRepeat + '已存在，不能重复添加');
+    }
+  };
 
 });

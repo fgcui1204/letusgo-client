@@ -1,18 +1,18 @@
 'use strict';
 
-describe("CartService", function () {
+describe('CartService', function () {
   var cartService,fromLocal, productService,cartItem;
   beforeEach(function () {
     module('letusgo');
 
     inject(function ($injector) {
-      cartService = $injector.get("cartService");
-      productService = $injector.get("productService");
+      cartService = $injector.get('cartService');
+      productService = $injector.get('productService');
       fromLocal = $injector.get('fromLocal');
     });
     cartItem = [
-      {p_sort:'水果',p_name:'苹果',p_price:'10',p_unit:'千克',count: 3},
-      {p_sort:'饮料',p_name:'雪碧',p_price:'3',p_unit:'瓶', count: 3}
+      {productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克',count: 3},
+      {productSort:'饮料',productName:'雪碧',productPrice:'3',productUnit:'瓶', count: 3}
     ];
 
 
@@ -32,7 +32,7 @@ describe("CartService", function () {
   });
 
   it('when change the count in cart the setData should be called',function(){
-    var item = {p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克',count: 4};
+    var item = {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克',count: 4};
     spyOn(fromLocal,'getData').and.returnValue(cartItem);
     spyOn(fromLocal,'setData');
     cartService.changeCount(item);
@@ -42,7 +42,7 @@ describe("CartService", function () {
   });
 
   it('when the count is 0,cartProduct should delete this product',function(){
-    var item = {p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克',count: 0};
+    var item = {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克',count: 0};
     spyOn(fromLocal,'getData').and.returnValue(cartItem);
     spyOn(fromLocal,'setData');
     cartService.changeCount(item);

@@ -1,5 +1,5 @@
-'use strict'
-describe("sortManagerCtrl",function() {
+'use strict';
+describe('sortManagerCtrl',function() {
   var $scope, fromLocal, sortManagerService, $location, createController, allSort;
   beforeEach(function () {
     module('letusgo');
@@ -7,7 +7,7 @@ describe("sortManagerCtrl",function() {
       $scope = $injector.get('$rootScope').$new();
       fromLocal = $injector.get('fromLocal');
       sortManagerService = $injector.get('sortManagerService');
-      $location = $injector.get('$location')
+      $location = $injector.get('$location');
       var $controller = $injector.get('$controller');
 
       createController = function () {

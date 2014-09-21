@@ -1,6 +1,6 @@
 'use strict';
 
-describe("addProductCtrl", function () {
+describe('addProductCtrl', function () {
   var $scope, fromLocal, productManagerService, $location, createController, allSort,allProduct;
   beforeEach(function () {
     module('letusgo');
@@ -22,8 +22,8 @@ describe("addProductCtrl", function () {
 
     });
     allProduct = [
-      {p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克'},
-      {p_sort: '水果', p_name: '香蕉', p_price: '5', p_unit: '千克'}
+      {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'},
+      {productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克'}
     ];
     allSort = ['水果','饮料'];
   });
@@ -36,10 +36,10 @@ describe("addProductCtrl", function () {
   it ('productInfo should be a object', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     var productInfo = {
-      p_sort: '',
-      p_name: '',
-      p_price: '',
-      p_unit: ''};
+      productSort: '',
+      productName: '',
+      productPrice: '',
+      productUnit: ''};
     spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
     createController();
     expect($scope.productInfo).toEqual(productInfo);
@@ -48,10 +48,10 @@ describe("addProductCtrl", function () {
   it ('it should add product', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     var productInfo = {
-      p_sort: '水果',
-      p_name: '梨',
-      p_price: '5',
-      p_unit: '千克'};
+      productSort: '水果',
+      productName: '梨',
+      productPrice: '5',
+      productUnit: '千克'};
     spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
     spyOn(productManagerService,'addProduct');
     createController();

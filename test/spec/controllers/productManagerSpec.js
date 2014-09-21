@@ -1,6 +1,6 @@
 'use strict';
 
-describe("ProductManagerCtrl",function() {
+describe('ProductManagerCtrl',function() {
   var $scope, fromLocal, productManagerService,$location, createController,allProduct;
   beforeEach(function () {
     module('letusgo');
@@ -22,8 +22,8 @@ describe("ProductManagerCtrl",function() {
 
     });
     allProduct = [
-      {p_sort:'水果',p_name:'苹果',p_price:'10',p_unit:'千克'},
-      {p_sort:'水果',p_name:'香蕉',p_price:'5',p_unit:'千克'}
+      {productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克'},
+      {productSort:'水果',productName:'香蕉',productPrice:'5',productUnit:'千克'}
     ];
   });
 
@@ -49,7 +49,7 @@ describe("ProductManagerCtrl",function() {
   });
 
   it('should come into update when click the update button', function () {
-    var product = {p_sort:'水果',p_name:'香蕉',p_price:'5',p_unit:'千克'};
+    var product = {productSort:'水果',productName:'香蕉',productPrice:'5',productUnit:'千克'};
     createController();
     $scope.toUpdate(product);
     expect($location.path() === '/updateProduct/香蕉').toBe(true);

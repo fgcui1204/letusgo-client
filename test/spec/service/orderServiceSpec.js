@@ -1,20 +1,20 @@
 'use strict';
 
-describe("CartService", function () {
+describe('CartService', function () {
   var $location,orderService, fromLocal;
   beforeEach(function () {
     module('letusgo');
 
     inject(function ($injector) {
       $location = $injector.get('$location');
-      orderService = $injector.get("orderService");
+      orderService = $injector.get('orderService');
       fromLocal = $injector.get('fromLocal');
     });
 
   });
   it('the localStorage is null',function(){
     orderService.remove();
-    expect(fromLocal.getData("cartProduct")).toEqual(null);
-    expect(fromLocal.getData("totalCount")).toBe(0);
+    expect(fromLocal.getData('cartProduct')).toEqual(null);
+    expect(fromLocal.getData('totalCount')).toBe(0);
   });
 });

@@ -1,11 +1,11 @@
+'use strict';
 angular.module('letusgo')
   .controller('sortManagerCtrl', function ($scope, fromLocal, $location, sortManagerService) {
     $scope.sorts = sortManagerService.getAllSorts();
     $scope.addSort = function () {
-      var sort = $scope.sort;
-      var allSort = fromLocal.getData('allSort');
-      allSort.push(sort);
-      fromLocal.setData("allSort", allSort);
+      var sort = sortManagerService.sortInfo();
+      sort.sname = $scope.sname;
+      sortManagerService.addSort(sort);
       $location.path('/sortManager');
     };
 

@@ -1,13 +1,14 @@
+'use strict';
 angular.module('letusgo').service('productService', function (fromLocal) {
   this.product = function () {
     return [
-      {p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克'},
-      {p_sort: '水果', p_name: '香蕉', p_price: '5', p_unit: '千克'},
-      {p_sort: '饮料', p_name: '可乐', p_price: '5', p_unit: '瓶'},
-      {p_sort: '饮料', p_name: '雪碧', p_price: '3', p_unit: '瓶'},
-      {p_sort: '服装', p_name: 'NIKE鞋', p_price: '300', p_unit: '双'},
-      {p_sort: '服装', p_name: '阿迪T恤', p_price: '200', p_unit: '件'}
-    ]
+      {barcode:'1', productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'},
+      {barcode:'2', productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克'},
+      {barcode:'3', productSort: '饮料', productName: '可乐', productPrice: '5', productUnit: '瓶'},
+      {barcode:'4', productSort: '饮料', productName: '雪碧', productPrice: '3', productUnit: '瓶'},
+      {barcode:'5', productSort: '服装', productName: 'NIKE鞋', productPrice: '300', productUnit: '双'},
+      {barcode:'6', productSort: '服装', productName: '阿迪T恤', productPrice: '200', productUnit: '件'}
+    ];
   };
 
   this.sort = function () {
@@ -16,7 +17,7 @@ angular.module('letusgo').service('productService', function (fromLocal) {
       {sid: '2', sname: '饮料'},
       {sid: '3', sname: '服装'},
       {sid: '4', sname: '蔬菜'}
-    ]
+    ];
   };
 
   this.setSortToLocal = function () {
@@ -34,7 +35,7 @@ angular.module('letusgo').service('productService', function (fromLocal) {
       totalCount = 0;
     } else {
       _.forEach(items, function (item) {
-        totalCount += item.count
+        totalCount += item.count;
       });
     }
     return totalCount;
@@ -45,8 +46,8 @@ angular.module('letusgo').service('productService', function (fromLocal) {
     var sorts = fromLocal.getData('allSort');
     _.forEach(items, function (item) {
       _.forEach(sorts, function (sort) {
-        if (item.p_sort == sort.sid) {
-          item.p_sort = sort.sname;
+        if (item.productSort === sort.sid) {
+          item.productSort = sort.sname;
         }
       });
     });
@@ -54,18 +55,20 @@ angular.module('letusgo').service('productService', function (fromLocal) {
   };
 
   this.addToCart = function (productItem) {
-    var cart_data = fromLocal.getData('cartProduct');
-    if (cart_data === null) {
-      cart_data = [];
+    var cartData = fromLocal.getData('cartProduct');
+
+    if (cartData === null) {
+      cartData = [];
     }
-    var cart_item = _.filter(cart_data, {'p_name': productItem.p_name});
-    if (cart_item != '') {
-      cart_item[0].count++;
+    var cartItem = _.find(cartData, {'barcode': productItem.barcode});
+    if (cartItem !== undefined) {
+      cartItem.count++;
     } else {
+
       productItem.count = 1;
-      cart_data.push(productItem);
+      cartData.push(productItem);
     }
-    fromLocal.setData('cartProduct', cart_data);
+    fromLocal.setData('cartProduct', cartData);
     fromLocal.setData('totalCount', this.getTotalCount());
   };
 });

@@ -1,12 +1,12 @@
 'use strict';
 
-describe("sortManagerServiceSpec", function () {
+describe('sortManagerServiceSpec', function () {
   var fromLocal, sortManagerService, sorts;
   beforeEach(function () {
     module('letusgo');
 
     inject(function ($injector) {
-      sortManagerService = $injector.get("sortManagerService");
+      sortManagerService = $injector.get('sortManagerService');
       fromLocal = $injector.get('fromLocal');
     });
     sorts = [
@@ -61,7 +61,7 @@ describe("sortManagerServiceSpec", function () {
   });
 
   it('test the update failure', function () {
-    spyOn(fromLocal, 'getData').and.returnValue(sorts)
+    spyOn(fromLocal, 'getData').and.returnValue(sorts);
     var sort = {sid:'3',sname:'服装'};
     var afterUpdateSort = sortManagerService.doUpdate(sort);
     expect(fromLocal.getData.calls.count()).toBe(1);

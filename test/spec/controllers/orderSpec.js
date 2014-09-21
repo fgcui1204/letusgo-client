@@ -1,6 +1,6 @@
 'use strict';
 
-describe("cartCtrl",function() {
+describe('cartCtrl',function() {
   var $scope, fromLocal, productService, createController, cartService, cartProduct,orderService;
   beforeEach(function () {
     module('letusgo');
@@ -14,8 +14,8 @@ describe("cartCtrl",function() {
       var $controller = $injector.get('$controller');
 
       cartProduct = [
-        {p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克', count: 1},
-        {p_sort: '水果', p_name: '香蕉', p_price: '5', p_unit: '千克', count: 2}
+        {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克', count: 1},
+        {productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克', count: 2}
       ];
 
       createController = function () {

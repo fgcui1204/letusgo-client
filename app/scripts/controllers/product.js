@@ -1,3 +1,4 @@
+'use strict';
 angular.module('letusgo')
     .controller('ProCtrl', function ($scope,fromLocal,productService) {
 

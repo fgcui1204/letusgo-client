@@ -1,11 +1,12 @@
+'use strict';
 angular.module('letusgo')
   .controller('ProductManagerCtrl', function ($scope,fromLocal,productManagerService) {
 
-    $scope.products = fromLocal.getData("allProduct");;
+    $scope.products = fromLocal.getData('allProduct');
 
-    $scope.delete = function(p_name){
-      productManagerService.delete(p_name);
-      $scope.products = fromLocal.getData("allProduct");;
+    $scope.delete = function(barcode){
+      productManagerService.delete(barcode);
+      $scope.products = fromLocal.getData('allProduct');
     };
 
     $scope.toAdd = function(){

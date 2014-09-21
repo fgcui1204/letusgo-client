@@ -1,8 +1,9 @@
+'use strict';
 angular.module('letusgo').service('productManagerService', function (fromLocal, $location) {
-  this.delete = function (p_name) {
+  this.delete = function (barcode) {
     var items = fromLocal.getData('allProduct');
     var afterDeleteItems = _.filter(items, function (item) {
-      return item.p_name != p_name;
+      return item.barcode !== barcode;
     });
     fromLocal.setData('allProduct', afterDeleteItems);
   };
@@ -23,29 +24,31 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
 
   this.productInfo = function () {
     return {
-      p_sort: '',
-      p_name: '',
-      p_price: '',
-      p_unit: ''
-    }
+      barcode:'',
+      productSort: '',
+      productName: '',
+      productPrice: '',
+      productUnit: ''
+    };
   };
 
   this.toUpdate = function (product) {
-    $location.path('/updateProduct/' + product.p_name);
+    $location.path('/updateProduct/' + product.barcode);
   };
 
-  this.getProductByName = function (pname) {
+  this.getProductById = function (barcode) {
     var items = fromLocal.getData('allProduct');
-    return _.filter(items, { 'p_name': pname });
+    return _.find(items, { 'barcode': barcode });
   };
 
   this.doUpdate = function (product) {
     var allProducts = fromLocal.getData('allProduct');
     _.forEach(allProducts, function (products) {
-      if (products.p_name == product.p_name) {
-        products.p_sort = product.p_sort;
-        products.p_price = product.p_price;
-        products.p_unit = product.p_unit;
+      if (products.barcode === product.barcode) {
+        products.productName = product.productName;
+        products.productSort = product.productSort;
+        products.productPrice = product.productPrice;
+        products.productUnit = product.productUnit;
       }
     });
     fromLocal.setData('allProduct', allProducts);
@@ -55,15 +58,17 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
     var items = fromLocal.getData('allProduct');
     var isTheRepeat = [];
     _.forEach(items, function (item) {
-      if (item.p_name === product.p_name) {
-        isTheRepeat = item.p_name;
+      if (item.productName === product.productName) {
+        isTheRepeat = item.productName;
       }
     });
-    if (isTheRepeat == '') {
+    if (isTheRepeat.toString() === '') {
+      product.barcode = parseInt(items[items.length-1].barcode)+1;
       items.push(product);
       fromLocal.setData('allProduct', items);
     } else {
       alert(isTheRepeat + '已存在，不能重复添加');
     }
-  }
+  };
 });
+

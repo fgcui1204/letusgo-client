@@ -1,6 +1,6 @@
 'use strict';
 
-describe("updateProduct",function() {
+describe('updateProduct',function() {
   var $scope, fromLocal, productManagerService, $routeParams, createController, allProduct,allSort;
   beforeEach(function () {
     module('letusgo');
@@ -22,8 +22,8 @@ describe("updateProduct",function() {
 
     });
     allProduct = [
-      {p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克'},
-      {p_sort: '水果', p_name: '香蕉', p_price: '5', p_unit: '千克'}
+      {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'},
+      {productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克'}
     ];
     allSort = ['水果','饮料'];
 
@@ -39,6 +39,6 @@ describe("updateProduct",function() {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     $routeParams.name = '苹果';
     createController();
-    expect($scope.productInfo).toEqual({p_sort: '水果', p_name: '苹果', p_price: '10', p_unit: '千克'});
+    expect($scope.productInfo).toEqual({productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'});
   });
 });

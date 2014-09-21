@@ -1,7 +1,7 @@
 'use strict';
 
-describe("updateSort",function() {
-  var $scope, fromLocal, $location,sortManagerService, $routeParams, createController, allProduct, allSort;
+describe('updateSort',function() {
+  var $scope, fromLocal, $location,sortManagerService, $routeParams, createController, allSort;
   beforeEach(function () {
     module('letusgo');
     inject(function ($injector) {

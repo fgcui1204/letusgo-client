@@ -1,3 +1,4 @@
+'use strict';
 angular.module('letusgo')
   .controller('updateSort', function ($scope,fromLocal,sortManagerService,$routeParams,$location) {
     $scope.sort = sortManagerService.getSortById($routeParams.sid)[0];
@@ -5,5 +6,5 @@ angular.module('letusgo')
     $scope.doUpdate = function(){
       sortManagerService.doUpdate($scope.sort);
       $location.path('/sortManager');
-    }
+    };
   });
