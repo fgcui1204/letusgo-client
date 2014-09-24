@@ -34,16 +34,18 @@ angular.module('letusgo').service('productService', function (fromLocal,$http) {
 //  };
 
   this.getTotalCount = function () {
-    var items = fromLocal.getData('cartProduct');
-    var totalCount = 0;
-    if (items === null) {
-      totalCount = 0;
-    } else {
-      _.forEach(items, function (item) {
-        totalCount += item.count;
-      });
-    }
-    return totalCount;
+    this.cartItem = function(data){
+      var items = data;
+      var totalCount = 0;
+      if (items === []) {
+        totalCount = 0;
+      } else {
+        _.forEach(items, function (item) {
+          totalCount += item.count;
+        });
+      }
+      return totalCount;
+    };
   };
 
 //  this.productWithSort = function () {
