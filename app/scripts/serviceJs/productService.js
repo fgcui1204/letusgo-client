@@ -6,6 +6,13 @@ angular.module('letusgo').service('productService', function (fromLocal,$http) {
     });
   };
 
+  this.cartItem = function (callback) {
+    $http.get('/api/cartItems').success(function(data){
+      var cartItems = data || [];
+      callback(cartItems);
+    });
+  };
+
   this.sort = function (callback) {
 //    return [
 //      {sid: '1', sname: '水果'},
@@ -18,13 +25,13 @@ angular.module('letusgo').service('productService', function (fromLocal,$http) {
     });
   };
 
-  this.setSortToLocal = function () {
-    fromLocal.setData('allSort', this.sort());
-  };
-
-  this.setToLocal = function () {
-    fromLocal.setData('allProduct', this.product());
-  };
+//  this.setSortToLocal = function () {
+//    fromLocal.setData('allSort', this.sort());
+//  };
+//
+//  this.setToLocal = function () {
+//    fromLocal.setData('allProduct', this.product());
+//  };
 
   this.getTotalCount = function () {
     var items = fromLocal.getData('cartProduct');
@@ -53,20 +60,18 @@ angular.module('letusgo').service('productService', function (fromLocal,$http) {
 //  };
 
   this.addToCart = function (productItem) {
-    var cartData = fromLocal.getData('cartProduct');
+    this.cartItem(function(data){
+      var cartData = data;
+      var cartItem = _.find(cartData, {'barcode': productItem.barcode});
+      if (cartItem !== undefined) {
+        cartItem.count++;
+      } else {
+        productItem.count = 1;
+        cartData.push(productItem);
+      }
+      $http.post('api/cartItems',{cartItems:cartData});
+    });
 
-    if (cartData === null) {
-      cartData = [];
-    }
-    var cartItem = _.find(cartData, {'barcode': productItem.barcode});
-    if (cartItem !== undefined) {
-      cartItem.count++;
-    } else {
 
-      productItem.count = 1;
-      cartData.push(productItem);
-    }
-    fromLocal.setData('cartProduct', cartData);
-    fromLocal.setData('totalCount', this.getTotalCount());
   };
 });
