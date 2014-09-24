@@ -7,10 +7,10 @@ angular.module('letusgo')
           $scope.products = data;
         });
 
-        $scope.$parent.totalCount = productService.getTotalCount();
-
-        $scope.addToCart = function(product){
-            productService.addToCart(product);
-            $scope.$parent.totalCount = productService.getTotalCount();
-        };
+//        $scope.$parent.totalCount = productService.getTotalCount();
+//
+//        $scope.addToCart = function(product){
+//            productService.addToCart(product);
+//            $scope.$parent.totalCount = productService.getTotalCount();
+//        };
     });
