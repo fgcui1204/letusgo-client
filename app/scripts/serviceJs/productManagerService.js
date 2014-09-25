@@ -51,17 +51,11 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
 
   };
 
-  this.doUpdate = function (product) {
-    var allProducts = fromLocal.getData('allProduct');
-    _.forEach(allProducts, function (products) {
-      if (products.barcode === product.barcode) {
-        products.productName = product.productName;
-        products.productSort = product.productSort;
-        products.productPrice = product.productPrice;
-        products.productUnit = product.productUnit;
-      }
-    });
-    fromLocal.setData('allProduct', allProducts);
+  this.doUpdate = function (product,callback) {
+    $http.put('/api/items/' + product.barcode, {item: product})
+      .success(function (data) {
+        callback(data);
+      });
   };
 
   this.addProduct = function (product) {
