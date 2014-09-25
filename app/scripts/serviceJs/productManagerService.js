@@ -15,16 +15,6 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
     $location.path('/addProduct');
   };
 
-  this.getAllSort = function () {
-
-    var allSort = fromLocal.getData('allSort');
-    var sorts = [];
-    _.forEach(allSort, function (sort) {
-      sorts.push(sort.sname);
-    });
-    return sorts;
-  };
-
   this.productInfo = function () {
     return {
       barcode:'',
