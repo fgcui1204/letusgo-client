@@ -24,7 +24,7 @@
 
       <div class="panel-body" ng-repeat="product in products|filter:query">
         <div class="row text-center">
-          <div class="col-md-1" id="p_name">{{product.productSort}}</div>
+          <div class="col-md-1" id="p_name">{{product.productSort.sname}}</div>
           <div class="col-md-3" id="p_name">{{product.productName}}</div>
           <div class="col-md-3" id="p_price">{{product.productPrice}}</div>
           <div class="col-md-2" id="p_unit">{{product.productUnit}}</div>
