@@ -1,11 +1,11 @@
 'use strict';
 angular.module('letusgo').service('productManagerService', function (fromLocal, $location,$http) {
-  this.delete = function (barcode) {
-    var items = fromLocal.getData('allProduct');
-    var afterDeleteItems = _.filter(items, function (item) {
-      return item.barcode !== barcode;
+
+  this.product = function (callback) {
+    $http.get('/api/items').success(function(data){
+      console.log(typeof data);
+      callback(data);
     });
-    fromLocal.setData('allProduct', afterDeleteItems);
   };
 
   this.delete = function(barcode){
@@ -40,9 +40,13 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
     $location.path('/updateProduct/' + product.barcode);
   };
 
-  this.getProductById = function (barcode) {
-    var items = fromLocal.getData('allProduct');
-    return _.find(items, { 'barcode': barcode });
+  this.getProductById = function (barcode,callback) {
+    this.product(function(data){
+      var items = data;
+      var item =  _.find(items, { 'barcode': barcode });
+      callback(item);
+    });
+
   };
 
   this.doUpdate = function (product) {
