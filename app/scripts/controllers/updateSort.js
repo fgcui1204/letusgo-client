@@ -6,8 +6,10 @@ angular.module('letusgo')
       $scope.sort = data;
     });
 
-//    $scope.doUpdate = function(){
-//      sortManagerService.doUpdate($scope.sort);
-//      $location.path('/sortManager');
-//    };
+    $scope.doUpdate = function(){
+      sortManagerService.doUpdate($scope.sort,function(){
+        $location.path('/sortManager');
+      });
+
+    };
   });
