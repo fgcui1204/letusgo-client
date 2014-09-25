@@ -1,10 +1,11 @@
 'use strict';
-angular.module('letusgo').service('sortManagerService', function (fromLocal, $location) {
+angular.module('letusgo').service('sortManagerService', function (fromLocal, $location,$http) {
 
-  this.getAllSorts = function () {
-    return fromLocal.getData('allSort');
+  this.getAllSorts = function (callback) {
+    $http.get('/api/categories').success(function(data){
+      callback(data);
+    });
   };
-
   this.delete = function (sort) {
     var allSorts = fromLocal.getData('allSort');
     var afterDeleteSorts = _.filter(allSorts, function (sorts) {
