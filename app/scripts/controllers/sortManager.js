@@ -4,12 +4,15 @@ angular.module('letusgo')
     sortManagerService.getAllSorts(function(data){
       $scope.sorts = data;
     });
-//    $scope.addSort = function () {
-//      var sort = sortManagerService.sortInfo();
-//      sort.sname = $scope.sname;
-//      sortManagerService.addSort(sort);
-//      $location.path('/sortManager');
-//    };
+
+    $scope.addSort = function(){
+      var sort = sortManagerService.sortInfo();
+      sort.sname = $scope.sname;
+      sortManagerService.addSort(sort,function(data){
+        $location.path('/sortManager');
+      });
+    };
+
 //
 //    $scope.delete = function (sort) {
 //      sortManagerService.delete(sort);
