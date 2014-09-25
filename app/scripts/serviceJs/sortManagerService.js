@@ -21,9 +21,13 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
     return sort.sid;
   };
 
-  this.getSortById = function (id) {
-    var allSorts = fromLocal.getData('allSort');
-    return _.filter(allSorts, { 'sid': id });
+  this.getSortById = function (id,callback) {
+    this.getAllSorts(function(data){
+      var allSorts = data;
+      var result = _.find(allSorts, { 'sid': id });
+      callback(result);
+    });
+
   };
 
   this.doUpdate = function (sort) {
