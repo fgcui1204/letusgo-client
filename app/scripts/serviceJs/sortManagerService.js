@@ -44,21 +44,11 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
     };
   };
 
-  this.addSort = function (sort) {
-    var sorts = fromLocal.getData('allSort');
-    var isTheRepeat = [];
-    _.forEach(sorts, function (s) {
-      if (s.sname === sort.sname) {
-        isTheRepeat = s.sname;
-      }
-    });
-    if (isTheRepeat.toString() === '') {
-      sort.sid = parseInt(sorts[sorts.length-1].sid)+1+'';
-      sorts.push(sort);
-      fromLocal.setData('allSort', sorts);
-    } else {
-      alert(isTheRepeat + '已存在，不能重复添加');
-    }
+  this.addSort = function (sort,callback) {
+    $http.post('/api/categories', {sort: sort})
+      .success(function (data) {
+        callback(data);
+      });
   };
 
 });
