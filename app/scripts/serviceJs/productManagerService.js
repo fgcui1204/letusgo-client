@@ -1,11 +1,15 @@
 'use strict';
-angular.module('letusgo').service('productManagerService', function (fromLocal, $location) {
+angular.module('letusgo').service('productManagerService', function (fromLocal, $location,$http) {
   this.delete = function (barcode) {
     var items = fromLocal.getData('allProduct');
     var afterDeleteItems = _.filter(items, function (item) {
       return item.barcode !== barcode;
     });
     fromLocal.setData('allProduct', afterDeleteItems);
+  };
+
+  this.delete = function(barcode){
+    $http.delete('/api/items/'+barcode);
   };
 
   this.toAdd = function () {
