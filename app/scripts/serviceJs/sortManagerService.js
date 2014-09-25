@@ -6,6 +6,7 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
       callback(data);
     });
   };
+
   this.delete = function (sort) {
     var allSorts = fromLocal.getData('allSort');
     var afterDeleteSorts = _.filter(allSorts, function (sorts) {
