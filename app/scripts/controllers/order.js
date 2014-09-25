@@ -13,9 +13,6 @@ angular.module('letusgo')
     cartService.getTotalMoney(function(data){
       $scope.totalMoney = data;
     });
-//
-//        $scope.totalMoney = cartService.getTotalMoney();
-//
 //        $scope.remove = function(){
 //            orderService.remove();
 //            $scope.$parent.totalCount=productService.getTotalCount();
