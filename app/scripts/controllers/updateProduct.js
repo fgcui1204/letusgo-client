@@ -5,8 +5,10 @@ angular.module('letusgo')
     productManagerService.getAllSorts(function(data){
       $scope.allSorts = data;
     });
-//    var item = productManagerService.getProductById($routeParams.barcode);
-//    $scope.productInfo = {'barcode':item.barcode,'productSort':item.productSort,productName:item.productName,productPrice:item.productPrice,productUnit:item.productUnit};
+    productManagerService.getProductById($routeParams.barcode,function(data){
+      var item = data;
+      $scope.productInfo = {'barcode':item.barcode,'productSort':item.productSort.sname,productName:item.productName,productPrice:item.productPrice,productUnit:item.productUnit};
+    });
 //
 //    $scope.doUpdate = function(){
 //      productManagerService.doUpdate($scope.productInfo);
