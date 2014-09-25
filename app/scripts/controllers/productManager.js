@@ -18,9 +18,9 @@ angular.module('letusgo')
 //      $scope.products = fromLocal.getData('allProduct');
 //    };
 //
-//    $scope.toAdd = function(){
-//      productManagerService.toAdd();
-//    };
+    $scope.toAdd = function(){
+      productManagerService.toAdd();
+    };
 //
     $scope.toUpdate = function(barcode){
       productManagerService.toUpdate(barcode);
