@@ -7,7 +7,7 @@ angular.module('letusgo')
     });
     productManagerService.getProductById($routeParams.barcode,function(data){
       var item = data;
-      $scope.productInfo = {'barcode':item.barcode,'productSort':item.productSort.sname,productName:item.productName,productPrice:item.productPrice,productUnit:item.productUnit};
+      $scope.productInfo = {'barcode':item.barcode,'productSort':item.productSort,'productName':item.productName,'productPrice':item.productPrice,'productUnit':item.productUnit};
     });
 //
 //    $scope.doUpdate = function(){
