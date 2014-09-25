@@ -1,6 +1,6 @@
 'use strict';
 angular.module('letusgo')
-  .controller('updateProduct', function ($scope,fromLocal,productManagerService,sortManagerService,$routeParams) {
+  .controller('updateProduct', function ($location,$scope,fromLocal,productManagerService,sortManagerService,$routeParams) {
 
     sortManagerService.getAllSorts(function(data){
       $scope.allSorts = data;
@@ -9,9 +9,11 @@ angular.module('letusgo')
       var item = data;
       $scope.productInfo = {'barcode':item.barcode,'productSort':item.productSort,'productName':item.productName,'productPrice':item.productPrice,'productUnit':item.productUnit};
     });
-//
-//    $scope.doUpdate = function(){
-//      productManagerService.doUpdate($scope.productInfo);
-//      $location.path('/productManager');
-//    };
+
+    $scope.doUpdate = function(){
+      productManagerService.doUpdate($scope.productInfo,function(){
+        $location.path('/productManager');
+      });
+
+    };
   });
