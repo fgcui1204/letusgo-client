@@ -49,26 +49,10 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
   };
 
   this.addProduct = function (product,callback) {
-//    this.product(function(data){
-//      var items = data;
-//      var isTheRepeat = [];
-//      _.forEach(items, function (item) {
-//        if (item.productName === product.productName) {
-//          isTheRepeat = item.productName;
-//        }
-//      });
-//      if (isTheRepeat.toString() === '') {
-//        product.barcode = parseInt(items[items.length-1].barcode)+1;
-//        items.push(product);
-//      } else {
-//        alert(isTheRepeat + '已存在，不能重复添加');
-//      }
       $http.post('/api/items', {item: product})
         .success(function (data) {
           callback(data);
         });
-   // });
-
   };
 });
 
