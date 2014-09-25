@@ -20,20 +20,21 @@ angular.module('letusgo').service('productService', function (fromLocal,$http) {
     });
   };
 
-//  this.getTotalCount = function () {
-//    this.cartItem = function(data){
-//      var items = data;
-//      var totalCount = 0;
-//      if (items === []) {
-//        totalCount = 0;
-//      } else {
-//        _.forEach(items, function (item) {
-//          totalCount += item.count;
-//        });
-//      }
-//      return totalCount;
-//    };
-//  };
+  this.getTotalCount = function (callback) {
+    this.cartItem(function(data){
+      var items = data;
+      var totalCount=0;
+      if (items === []) {
+        totalCount = 0;
+      } else {
+        _.forEach(items, function (item) {
+          totalCount += item.count;
+        });
+      }
+      callback(totalCount);
+    });
+
+  };
 
   this.addToCart = function (productItem) {
     this.cartItem(function(data){
