@@ -36,8 +36,8 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
     };
   };
 
-  this.toUpdate = function (product) {
-    $location.path('/updateProduct/' + product.barcode);
+  this.toUpdate = function (barcode) {
+    $location.path('/updateProduct/' + barcode);
   };
 
   this.getProductById = function (barcode,callback) {

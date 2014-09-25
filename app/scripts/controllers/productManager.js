@@ -22,9 +22,9 @@ angular.module('letusgo')
 //      productManagerService.toAdd();
 //    };
 //
-//    $scope.toUpdate = function(product){
-//      productManagerService.toUpdate(product);
-//
-//    };
+    $scope.toUpdate = function(barcode){
+      productManagerService.toUpdate(barcode);
+
+    };
 
   });
