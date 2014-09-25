@@ -9,7 +9,6 @@ angular.module('letusgo').service('productService', function (fromLocal,$http) {
 
   this.cartItem = function (callback) {
     $http.get('/api/cartItems').success(function(data){
-      console.log('11111111111111');
       var cartItems = data || [];
       callback(cartItems);
     });
