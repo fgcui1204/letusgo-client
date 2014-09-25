@@ -5,10 +5,12 @@ angular.module('letusgo')
 
     productService.cartItem(function(data){
       $scope.cartItems = data;
+      $scope.totalMoney = cartService.getTotalMoney(data);
+
     });
 //        $scope.$parent.totalCount = productService.getTotalCount();
 //
-//        $scope.totalMoney = cartService.getTotalMoney();
+
 //
 //        $scope.changeCount = function (item) {
 //            cartService.changeCount(item);
