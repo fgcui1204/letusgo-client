@@ -6,5 +6,5 @@ angular.module('letusgo')
 //    productService.setSortToLocal();
 //    productService.setToLocal();
 
-    $scope.totalCount = productService.getTotalCount();
+    //$scope.totalCount = productService.getTotalCount();
   });
