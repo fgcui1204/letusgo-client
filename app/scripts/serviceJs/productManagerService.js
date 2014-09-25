@@ -28,7 +28,10 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
   this.productInfo = function () {
     return {
       barcode:'',
-      productSort: '',
+      productSort: {
+        sid: '',
+        sname:''
+      },
       productName: '',
       productPrice: '',
       productUnit: ''
