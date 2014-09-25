@@ -30,15 +30,11 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
 
   };
 
-  this.doUpdate = function (sort) {
-    var allSorts = fromLocal.getData('allSort');
-    _.forEach(allSorts, function (sorts) {
-      if (sorts.sid === sort.sid) {
-        sorts.sname = sort.sname;
-      }
-    });
-    fromLocal.setData('allSort', allSorts);
-    return allSorts;
+  this.doUpdate = function (sort,callback) {
+    $http.put('/api/categories/' + sort.sid, {sort: sort})
+      .success(function (data) {
+        callback(data);
+      });
   };
 
   this.sortInfo = function () {
