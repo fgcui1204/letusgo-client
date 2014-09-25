@@ -6,6 +6,13 @@ angular.module('letusgo')
       $scope.products = data;
     });
 
+    $scope.delete = function(barcode){
+      productManagerService.delete(barcode);
+      productService.product(function(data){
+        $scope.products = data;
+      });
+    };
+
 //    $scope.delete = function(barcode){
 //      productManagerService.delete(barcode);
 //      $scope.products = fromLocal.getData('allProduct');
