@@ -18,8 +18,7 @@ angular.module('letusgo')
 //      sortManagerService.delete(sort);
 //      $scope.sorts = sortManagerService.getAllSorts();
 //    };
-//    $scope.toUpdate = function (sort) {
-//      sortManagerService.toUpdate(sort);
-//
-//    };
+    $scope.toUpdate = function (sort) {
+      sortManagerService.toUpdate(sort);
+    };
   });
