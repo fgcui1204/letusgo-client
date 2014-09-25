@@ -12,7 +12,7 @@ angular.module('letusgo')
 
         $scope.addToCart = function(product){
             productService.addToCart(product);
-          
+
             productService.getTotalCount(function(data){
             $scope.$parent.totalCount = data;
           });
