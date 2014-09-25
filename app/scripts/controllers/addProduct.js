@@ -10,7 +10,5 @@ angular.module('letusgo')
       productManagerService.addProduct(productInfo,function(data){
         $location.path('/productManager');
       });
-
-
     };
   });
