@@ -3,7 +3,6 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
 
   this.product = function (callback) {
     $http.get('/api/items').success(function(data){
-      console.log(typeof data);
       callback(data);
     });
   };
