@@ -59,20 +59,23 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
   };
 
   this.addProduct = function (product) {
-    var items = fromLocal.getData('allProduct');
-    var isTheRepeat = [];
-    _.forEach(items, function (item) {
-      if (item.productName === product.productName) {
-        isTheRepeat = item.productName;
+    this.product(function(data){
+      var items = data;
+      var isTheRepeat = [];
+      _.forEach(items, function (item) {
+        if (item.productName === product.productName) {
+          isTheRepeat = item.productName;
+        }
+      });
+      if (isTheRepeat.toString() === '') {
+        product.barcode = parseInt(items[items.length-1].barcode)+1;
+        items.push(product);
+        fromLocal.setData('allProduct', items);
+      } else {
+        alert(isTheRepeat + '已存在，不能重复添加');
       }
     });
-    if (isTheRepeat.toString() === '') {
-      product.barcode = parseInt(items[items.length-1].barcode)+1;
-      items.push(product);
-      fromLocal.setData('allProduct', items);
-    } else {
-      alert(isTheRepeat + '已存在，不能重复添加');
-    }
+
   };
 });
 
