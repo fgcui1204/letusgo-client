@@ -14,11 +14,14 @@ angular.module('letusgo')
       $scope.totalMoney = data;
     });
 
-//
-//        $scope.changeCount = function (item) {
-//            cartService.changeCount(item);
-//            $scope.totalMoney = cartService.getTotalMoney();
-//            $scope.$parent.totalCount = productService.getTotalCount();
-//            $scope.cartItems = fromLocal.getData('cartProduct');
-//        };
+
+        $scope.changeCount = function (item) {
+            cartService.changeCount(item);
+          productService.getTotalCount(function(data){
+            $scope.$parent.totalCount = data;
+          });
+          cartService.getTotalMoney(function(data){
+            $scope.totalMoney = data;
+          });
+        };
     });
