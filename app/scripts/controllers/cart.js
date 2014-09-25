@@ -5,11 +5,13 @@ angular.module('letusgo')
 
     productService.cartItem(function(data){
       $scope.cartItems = data;
-      $scope.totalMoney = cartService.getTotalMoney(data);
-
     });
     productService.getTotalCount(function(data){
       $scope.$parent.totalCount = data;
+    });
+
+    cartService.getTotalMoney(function(data){
+      $scope.totalMoney = data;
     });
 
 //

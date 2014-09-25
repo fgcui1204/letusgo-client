@@ -2,15 +2,17 @@
 angular.module('letusgo').service('cartService', function (fromLocal, productService) {
 
 
-  this.getTotalMoney = function (cartItem) {
+  this.getTotalMoney = function (callback) {
+    productService.cartItem(function(data){
+      var cartItem = data;
       var totalMoney = 0;
       if (cartItem !== null) {
         _.forEach(cartItem, function (item) {
           totalMoney += item.productPrice * item.count;
         });
       }
-      return totalMoney;
-
+      callback(totalMoney);
+    });
 
   };
 
