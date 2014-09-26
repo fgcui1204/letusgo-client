@@ -16,12 +16,13 @@ angular.module('letusgo')
 
 
         $scope.changeCount = function (item) {
-            cartService.changeCount(item);
-          productService.getTotalCount(function(data){
-            $scope.$parent.totalCount = data;
-          });
-          cartService.getTotalMoney(function(data){
-            $scope.totalMoney = data;
-          });
+            cartService.changeCount(item,function(){
+              productService.getTotalCount(function(data){
+                $scope.$parent.totalCount = data;
+              });
+              cartService.getTotalMoney(function(data){
+                $scope.totalMoney = data;
+              });
+            });
         };
     });
