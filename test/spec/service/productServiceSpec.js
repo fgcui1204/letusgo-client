@@ -1,31 +1,44 @@
 'use strict';
 
-xdescribe('productService', function () {
-  var fromLocal, productService;
+describe('productService', function () {
+  var $http, productService,items,cartItems;
   beforeEach(function () {
     module('letusgo');
 
     inject(function ($injector) {
       productService = $injector.get('productService');
-      fromLocal = $injector.get('fromLocal');
+      $http = $injector.get('$http');
     });
 
+    items = [
+      {barcode: '1', productSort: {sid: '1', sname: '水果'}, productName: '苹果', productPrice: '10', productUnit: '千克'},
+      {barcode: '2', productSort: {sid: '1', sname: '水果'}, productName: '香蕉', productPrice: '5', productUnit: '千克'},
+      {barcode: '3', productSort: {sid: '2', sname: '饮料'}, productName: '可乐', productPrice: '5', productUnit: '瓶'}
+    ];
+    
+    cartItems = [
+      {barcode: '1', productSort: {sid: '1', sname: '水果'}, productName: '苹果', productPrice: '10', productUnit: '千克',count:3}
+    ];
   });
   it('should has products', function () {
-    var result = productService.product();
-    expect(result[0].productName).toEqual('苹果');
-    expect(result[3].productName).toEqual('雪碧');
-    expect(result.length).toEqual(6);
+    productService.product(function(callback){
+       callback(cartItems);
+      expect(cartItems[0].productName).toEqual('苹果');
+      expect(cartItems[0].count).toEqual(3);
+      expect(cartItems.length).toEqual(1);
+  });
   });
 
-  it('it should do product save to localstorage', function () {
-    spyOn(fromLocal, 'setData');
-    spyOn(productService, 'product').and.returnValue([]);
-    productService.setToLocal();
-    expect(fromLocal.setData).toHaveBeenCalledWith('allProduct', []);
-  });
+  it('it should test cartItems', function () {
+    productService.cartItem(function(callback){
 
-  it('when cart is null,the total count in cart is one', function () {
+      callback(items);
+      expect(items[0].productName).toEqual('苹果');
+      expect(items[3].productName).toEqual('可乐');
+      expect(items.length).toEqual(3);
+    });
+  });
+  xit('when cart is null,the total count in cart is one', function () {
     // spyOn(fromLocal,'getData');
     spyOn(fromLocal, 'getData').and.returnValue(null);
     productService.getTotalCount();
@@ -33,7 +46,7 @@ xdescribe('productService', function () {
     expect(productService.getTotalCount()).toBe(0);
   });
 
-  it('calculate the total count in cart when cart is not null', function () {
+  xit('calculate the total count in cart when cart is not null', function () {
     var cartItem = [{productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克', count: 2}];
     spyOn(fromLocal, 'getData').and.returnValue(cartItem);
     productService.getTotalCount();
@@ -41,7 +54,7 @@ xdescribe('productService', function () {
     expect(productService.getTotalCount()).toBe(2);
   });
 
-  it('the function of getData is called one ', function () {
+  xit('the function of getData is called one ', function () {
     var productItem = {productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克'};
     spyOn(fromLocal, 'getData').and.returnValue(null);
     spyOn(productService,'getTotalCount').and.returnValue(0);
@@ -49,14 +62,14 @@ xdescribe('productService', function () {
     expect(fromLocal.getData.calls.count()).toBe(1);
   });
 
-  it('this item has been in cart ,so the count add one', function () {
+  xit('this item has been in cart ,so the count add one', function () {
     var productItem = {productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克'};
     var cartItem = [{productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克', count: 2}];
     spyOn(fromLocal, 'getData').and.returnValue(cartItem);
     productService.addToCart(productItem);
     expect(cartItem[0].count).toBe(3);
   });
-  it('cart should add a new item and the setData should called two times', function () {
+  xit('cart should add a new item and the setData should called two times', function () {
     var productItem = {productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克'};
     var cartItem = [{productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克', count: '2'}];
     spyOn(fromLocal, 'getData').and.returnValue(cartItem);
