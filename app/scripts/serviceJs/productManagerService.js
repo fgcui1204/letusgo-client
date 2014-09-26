@@ -41,6 +41,19 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
 
   };
 
+
+  this.judgeIfHaveItems = function(sid,callback){
+    this.product(function(data){
+      var items = data;
+      var result = true;
+      _.forEach(items,function(item){
+        if(item.productSort.sid === sid){
+         result = false;
+        }
+      });
+        callback(result);
+    });
+  };
   this.doUpdate = function (product, callback) {
     $http.put('/api/items/' + product.barcode, {item: product})
       .success(function (data) {
