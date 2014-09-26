@@ -11,10 +11,11 @@ angular.module('letusgo')
     });
 
         $scope.addToCart = function(product){
-            productService.addToCart(product);
+            productService.addToCart(product,function(){
+              productService.getTotalCount(function(data){
+                $scope.$parent.totalCount = data;
+            });
 
-            productService.getTotalCount(function(data){
-            $scope.$parent.totalCount = data;
           });
         };
     });
