@@ -12,7 +12,7 @@
         <label  class="col-sm-2 control-label">商品类别</label>
         <div class="col-sm-10">
           <select class="form-control" ng-model="productInfo.productSort" ng-options="sort.sname for sort in allSorts">
-            <option value=''>{{sort.sname}}</option>
+            <option value="">{{productInfo.productSort.sname}}</option>
           </select>
         </div>
       </div>
