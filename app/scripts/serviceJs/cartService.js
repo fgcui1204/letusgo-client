@@ -16,7 +16,7 @@ angular.module('letusgo').service('cartService', function (fromLocal, productSer
 
   };
 
-  this.changeCount = function (item) {
+  this.changeCount = function (item,callback) {
     productService.cartItem(function(data){
       var cartItem = data;
       _.forEach(cartItem, function (cartItem) {
@@ -27,7 +27,9 @@ angular.module('letusgo').service('cartService', function (fromLocal, productSer
       var cartItemCountNotZero = _.filter(cartItem, function (item) {
         return item.count !== 0;
       });
-      $http.post('/api/cartItems',{cartItems:cartItemCountNotZero});
+      $http.post('/api/cartItems',{cartItems:cartItemCountNotZero}).success(function(){
+        callback();
+      });
     });
 
   };
