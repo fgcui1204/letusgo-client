@@ -1,7 +1,7 @@
 'use strict';
 
 describe('productService', function () {
-  var $http, productService,items,cartItems;
+  var $http, productService,items,cartItems,sorts;
   beforeEach(function () {
     module('letusgo');
 
@@ -15,9 +15,16 @@ describe('productService', function () {
       {barcode: '2', productSort: {sid: '1', sname: '水果'}, productName: '香蕉', productPrice: '5', productUnit: '千克'},
       {barcode: '3', productSort: {sid: '2', sname: '饮料'}, productName: '可乐', productPrice: '5', productUnit: '瓶'}
     ];
-    
+
     cartItems = [
       {barcode: '1', productSort: {sid: '1', sname: '水果'}, productName: '苹果', productPrice: '10', productUnit: '千克',count:3}
+    ];
+
+    sorts = [
+      {sid: '1', sname: '水果'},
+      {sid: '2', sname: '饮料'},
+      {sid: '3', sname: '服装'},
+      {sid: '4', sname: '蔬菜'}
     ];
   });
   it('should has products', function () {
