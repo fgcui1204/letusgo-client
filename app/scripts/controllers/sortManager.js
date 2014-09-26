@@ -1,6 +1,6 @@
 'use strict';
 angular.module('letusgo')
-  .controller('sortManagerCtrl', function ($scope, fromLocal, $location, sortManagerService) {
+  .controller('sortManagerCtrl', function ($scope, fromLocal, $location, sortManagerService,productManagerService) {
     sortManagerService.getAllSorts(function (data) {
       $scope.sorts = data;
     });
@@ -15,10 +15,17 @@ angular.module('letusgo')
 
 
     $scope.delete = function (sid) {
-      sortManagerService.delete(sid);
-      sortManagerService.getAllSorts(function (data) {
-        $scope.sorts = data;
+      productManagerService.judgeIfHaveItems(sid,function(data){
+        if(data){
+          sortManagerService.delete(sid);
+          sortManagerService.getAllSorts(function (data) {
+            $scope.sorts = data;
+          });
+        }else{
+          alert('该分类下有商品，不能删除');
+        }
       });
+
     };
     $scope.toUpdate = function (sort) {
       sortManagerService.toUpdate(sort);
