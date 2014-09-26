@@ -13,15 +13,10 @@ angular.module('letusgo')
       });
     };
 
-//    $scope.delete = function(barcode){
-//      productManagerService.delete(barcode);
-//      $scope.products = fromLocal.getData('allProduct');
-//    };
-//
     $scope.toAdd = function () {
       productManagerService.toAdd();
     };
-//
+
     $scope.toUpdate = function (barcode) {
       productManagerService.toUpdate(barcode);
     };
