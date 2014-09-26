@@ -15,9 +15,11 @@ angular.module('letusgo')
     });
         $scope.remove = function(){
             orderService.remove(function(data){
-
+              productService.getTotalCount(function (data) {
+                $scope.$parent.totalCount = data;
+              });
             });
-            $scope.$parent.totalCount=productService.getTotalCount();
+
 
         };
   });
