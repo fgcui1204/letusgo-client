@@ -1,6 +1,6 @@
 'use strict';
 
-describe('productCtrl',function(){
+xdescribe('productCtrl',function(){
     var $scope,fromLocal,productService,createController;
     beforeEach(function () {
         module('letusgo');

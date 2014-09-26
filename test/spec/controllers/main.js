@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+xdescribe('Controller: MainCtrl', function () {
   var $scope, productService, createController;
 
   beforeEach(function () {

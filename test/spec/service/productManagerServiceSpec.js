@@ -1,6 +1,6 @@
 'use strict';
 
-describe('productManagerServiceSpec', function () {
+xdescribe('productManagerServiceSpec', function () {
   var fromLocal, productManagerService,products;
   beforeEach(function () {
     module('letusgo');

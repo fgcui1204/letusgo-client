@@ -1,6 +1,6 @@
 'use strict';
 
-describe('CartService', function () {
+xdescribe('CartService', function () {
   var cartService,fromLocal, productService,cartItem;
   beforeEach(function () {
     module('letusgo');

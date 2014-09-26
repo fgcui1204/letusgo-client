@@ -1,5 +1,5 @@
 'use strict';
-describe('sortManagerCtrl',function() {
+xdescribe('sortManagerCtrl',function() {
   var $scope, fromLocal, sortManagerService, $location, createController, allSort;
   beforeEach(function () {
     module('letusgo');

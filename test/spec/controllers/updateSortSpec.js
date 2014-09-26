@@ -1,6 +1,6 @@
 'use strict';
 
-describe('updateSort',function() {
+xdescribe('updateSort',function() {
   var $scope, fromLocal, $location,sortManagerService, $routeParams, createController, allSort;
   beforeEach(function () {
     module('letusgo');
