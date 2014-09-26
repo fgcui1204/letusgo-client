@@ -7,13 +7,8 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
     });
   };
 
-  this.delete = function (sort) {
-    var allSorts = fromLocal.getData('allSort');
-    var afterDeleteSorts = _.filter(allSorts, function (sorts) {
-      return sorts.sid !== sort.sid;
-    });
-    fromLocal.setData('allSort', afterDeleteSorts);
-    return afterDeleteSorts;
+  this.delete = function (sid) {
+    $http.delete('/api/categories/'+sid);
   };
 
   this.toUpdate = function (sort) {
