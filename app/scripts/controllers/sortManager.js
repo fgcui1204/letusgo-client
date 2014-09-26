@@ -13,11 +13,13 @@ angular.module('letusgo')
       });
     };
 
-//
-//    $scope.delete = function (sort) {
-//      sortManagerService.delete(sort);
-//      $scope.sorts = sortManagerService.getAllSorts();
-//    };
+
+    $scope.delete = function (sid) {
+      sortManagerService.delete(sid);
+      sortManagerService.getAllSorts(function(data){
+        $scope.sorts = data;
+      });
+    };
     $scope.toUpdate = function (sort) {
       sortManagerService.toUpdate(sort);
     };
