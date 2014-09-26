@@ -1,9 +1,9 @@
 'use strict';
-angular.module('letusgo').service('cartService', function (fromLocal, productService,$http) {
+angular.module('letusgo').service('cartService', function (fromLocal, productService, $http) {
 
 
   this.getTotalMoney = function (callback) {
-    productService.cartItem(function(data){
+    productService.cartItem(function (data) {
       var cartItem = data;
       var totalMoney = 0;
       if (cartItem !== null) {
@@ -16,8 +16,8 @@ angular.module('letusgo').service('cartService', function (fromLocal, productSer
 
   };
 
-  this.changeCount = function (item,callback) {
-    productService.cartItem(function(data){
+  this.changeCount = function (item, callback) {
+    productService.cartItem(function (data) {
       var cartItem = data;
       _.forEach(cartItem, function (cartItem) {
         if (cartItem.productName === item.productName) {
@@ -27,7 +27,7 @@ angular.module('letusgo').service('cartService', function (fromLocal, productSer
       var cartItemCountNotZero = _.filter(cartItem, function (item) {
         return item.count !== 0;
       });
-      $http.post('/api/cartItems',{cartItems:cartItemCountNotZero}).success(function(){
+      $http.post('/api/cartItems', {cartItems: cartItemCountNotZero}).success(function () {
         callback();
       });
     });

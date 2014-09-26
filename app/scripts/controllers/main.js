@@ -7,7 +7,7 @@ angular.module('letusgo')
 //    productService.setToLocal();
 
     //$scope.totalCount = productService.getTotalCount();
-    productService.getTotalCount(function(data){
+    productService.getTotalCount(function (data) {
       $scope.$parent.totalCount = data;
     });
   });

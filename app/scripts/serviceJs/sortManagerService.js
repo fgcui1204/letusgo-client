@@ -1,14 +1,14 @@
 'use strict';
-angular.module('letusgo').service('sortManagerService', function (fromLocal, $location,$http) {
+angular.module('letusgo').service('sortManagerService', function (fromLocal, $location, $http) {
 
   this.getAllSorts = function (callback) {
-    $http.get('/api/categories').success(function(data){
+    $http.get('/api/categories').success(function (data) {
       callback(data);
     });
   };
 
   this.delete = function (sid) {
-    $http.delete('/api/categories/'+sid);
+    $http.delete('/api/categories/' + sid);
   };
 
   this.toUpdate = function (sort) {
@@ -16,8 +16,8 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
     return sort.sid;
   };
 
-  this.getSortById = function (id,callback) {
-    this.getAllSorts(function(data){
+  this.getSortById = function (id, callback) {
+    this.getAllSorts(function (data) {
       var allSorts = data;
       var result = _.find(allSorts, { 'sid': id });
       callback(result);
@@ -25,7 +25,7 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
 
   };
 
-  this.doUpdate = function (sort,callback) {
+  this.doUpdate = function (sort, callback) {
     $http.put('/api/categories/' + sort.sid, {sort: sort})
       .success(function (data) {
         callback(data);
@@ -34,12 +34,12 @@ angular.module('letusgo').service('sortManagerService', function (fromLocal, $lo
 
   this.sortInfo = function () {
     return {
-      sid:'',
+      sid: '',
       sname: ''
     };
   };
 
-  this.addSort = function (sort,callback) {
+  this.addSort = function (sort, callback) {
     $http.post('/api/categories', {sort: sort})
       .success(function (data) {
         callback(data);

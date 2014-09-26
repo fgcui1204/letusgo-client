@@ -1,14 +1,14 @@
 'use strict';
-angular.module('letusgo').service('productManagerService', function (fromLocal, $location,$http) {
+angular.module('letusgo').service('productManagerService', function (fromLocal, $location, $http) {
 
   this.product = function (callback) {
-    $http.get('/api/items').success(function(data){
+    $http.get('/api/items').success(function (data) {
       callback(data);
     });
   };
 
-  this.delete = function(barcode){
-    $http.delete('/api/items/'+barcode);
+  this.delete = function (barcode) {
+    $http.delete('/api/items/' + barcode);
   };
 
   this.toAdd = function () {
@@ -17,10 +17,10 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
 
   this.productInfo = function () {
     return {
-      barcode:'',
+      barcode: '',
       productSort: {
         sid: '',
-        sname:''
+        sname: ''
       },
       productName: '',
       productPrice: '',
@@ -32,27 +32,27 @@ angular.module('letusgo').service('productManagerService', function (fromLocal, 
     $location.path('/updateProduct/' + barcode);
   };
 
-  this.getProductById = function (barcode,callback) {
-    this.product(function(data){
+  this.getProductById = function (barcode, callback) {
+    this.product(function (data) {
       var items = data;
-      var item =  _.find(items, { 'barcode': barcode });
+      var item = _.find(items, { 'barcode': barcode });
       callback(item);
     });
 
   };
 
-  this.doUpdate = function (product,callback) {
+  this.doUpdate = function (product, callback) {
     $http.put('/api/items/' + product.barcode, {item: product})
       .success(function (data) {
         callback(data);
       });
   };
 
-  this.addProduct = function (product,callback) {
-      $http.post('/api/items', {item: product})
-        .success(function (data) {
-          callback(data);
-        });
+  this.addProduct = function (product, callback) {
+    $http.post('/api/items', {item: product})
+      .success(function (data) {
+        callback(data);
+      });
   };
 });
 
