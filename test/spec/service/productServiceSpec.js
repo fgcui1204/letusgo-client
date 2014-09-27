@@ -48,12 +48,20 @@ describe('productService', function () {
 
   it('it should test sorts', function () {
     productService.sort(function(callback){
-
       callback(sorts);
       expect(sorts[0].sname).toEqual('水果');
       expect(sorts.length).toEqual(4);
     });
   });
+
+  it('it should test sorts', function () {
+    productService.sort(function(callback){
+      callback(sorts);
+      expect(sorts[0].sname).toEqual('水果');
+      expect(sorts.length).toEqual(4);
+    });
+  });
+
   xit('when cart is null,the total count in cart is one', function () {
     // spyOn(fromLocal,'getData');
     spyOn(fromLocal, 'getData').and.returnValue(null);
