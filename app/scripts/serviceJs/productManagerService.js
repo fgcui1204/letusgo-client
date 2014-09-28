@@ -11,9 +11,6 @@ angular.module('letusgo').service('productManagerService', function ( $location,
     $http.delete('/api/items/' + barcode);
   };
 
-  this.toAdd = function () {
-    $location.path('/addProduct');
-  };
 
   this.productInfo = function () {
     return {
