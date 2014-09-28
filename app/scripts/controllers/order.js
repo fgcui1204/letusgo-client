@@ -17,10 +17,9 @@ angular.module('letusgo')
             orderService.remove(function(data){
               productService.getTotalCount(function (data) {
                 $scope.$parent.totalCount = data;
-                $location.path('/homePage').replace();
+
               });
             });
-
-
+          $location.path('/homePage').replace();
         };
   });
