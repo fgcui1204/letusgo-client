@@ -18,7 +18,7 @@ angular.module('letusgo')
     };
 
     $scope.toUpdate = function (barcode) {
-      productManagerService.toUpdate(barcode);
+      $location.path('/updateProduct/' + barcode);
     };
 
   });
