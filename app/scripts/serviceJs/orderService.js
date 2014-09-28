@@ -4,6 +4,5 @@ angular.module('letusgo').service('orderService', function ($location,fromLocal,
       $http.delete('/api/payment').success(function(data){
         callback(data);
       });
-        $location.path('/homePage').replace();
     };
 });
