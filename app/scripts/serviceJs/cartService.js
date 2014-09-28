@@ -1,5 +1,5 @@
 'use strict';
-angular.module('letusgo').service('cartService', function (fromLocal, productService, $http) {
+angular.module('letusgo').service('cartService', function ( productService, $http) {
 
 
   this.getTotalMoney = function (callback) {

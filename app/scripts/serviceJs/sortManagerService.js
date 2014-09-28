@@ -1,5 +1,5 @@
 'use strict';
-angular.module('letusgo').service('sortManagerService', function (fromLocal, $location, $http) {
+angular.module('letusgo').service('sortManagerService', function ($location, $http) {
 
   this.getAllSorts = function (callback) {
     $http.get('/api/categories').success(function (data) {

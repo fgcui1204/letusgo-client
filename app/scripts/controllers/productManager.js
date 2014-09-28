@@ -1,6 +1,6 @@
 'use strict';
 angular.module('letusgo')
-  .controller('ProductManagerCtrl', function ($scope, fromLocal, productManagerService) {
+  .controller('ProductManagerCtrl', function ($scope, productManagerService) {
 
     productManagerService.product(function (data) {
       $scope.products = data;

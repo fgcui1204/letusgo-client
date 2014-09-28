@@ -1,5 +1,5 @@
 'use strict';
-angular.module('letusgo').service('orderService', function (fromLocal,$http) {
+angular.module('letusgo').service('orderService', function ($http) {
     this.remove = function(callback){
       $http.delete('/api/payment').success(function(data){
         callback(data);

@@ -1,7 +1,6 @@
 'use strict';
 angular.module('letusgo')
-  .controller('CartCtrl', function ($scope, fromLocal, cartService, productService) {
-    // $scope.cartItems = fromLocal.getData("cartProduct");
+  .controller('CartCtrl', function ($scope,cartService, productService) {
 
     productService.cartItem(function (data) {
       $scope.cartItems = data;
