@@ -1,6 +1,6 @@
 'use strict';
 angular.module('letusgo')
-  .controller('ProductManagerCtrl', function ($scope, productManagerService) {
+  .controller('ProductManagerCtrl', function ($location,$scope, productManagerService) {
 
     productManagerService.product(function (data) {
       $scope.products = data;
@@ -14,7 +14,7 @@ angular.module('letusgo')
     };
 
     $scope.toAdd = function () {
-      productManagerService.toAdd();
+      $location.path('/addProduct');
     };
 
     $scope.toUpdate = function (barcode) {
