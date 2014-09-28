@@ -11,11 +11,6 @@ angular.module('letusgo').service('sortManagerService', function ($location, $ht
     $http.delete('/api/categories/' + sid);
   };
 
-  this.toUpdate = function (sort) {
-    $location.path('/updateSort/' + sort.sid);
-    return sort.sid;
-  };
-
   this.getSortById = function (id, callback) {
     this.getAllSorts(function (data) {
       var allSorts = data;
