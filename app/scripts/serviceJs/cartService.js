@@ -4,8 +4,10 @@ angular.module('letusgo').service('cartService', function (fromLocal, productSer
 
   this.getTotalMoney = function (callback) {
     productService.cartItem(function (data) {
+
       var cartItem = data;
       var totalMoney = 0;
+
       if (cartItem !== null) {
         _.forEach(cartItem, function (item) {
           totalMoney += item.productPrice * item.count;
@@ -24,10 +26,10 @@ angular.module('letusgo').service('cartService', function (fromLocal, productSer
           cartItem.count = item.count;
         }
       });
-      var cartItemCountNotZero = _.filter(cartItem, function (item) {
+      var result = _.filter(cartItem, function (item) {
         return item.count !== 0;
       });
-      $http.post('/api/cartItems', {cartItems: cartItemCountNotZero}).success(function () {
+      $http.post('/api/cartItems', {cartItems: result}).success(function () {
         callback();
       });
     });
