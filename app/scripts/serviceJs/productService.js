@@ -37,14 +37,17 @@ angular.module('letusgo').service('productService', function ($http) {
 
   this.addToCart = function (productItem, callback) {
     this.cartItem(function (data) {
+
       var cartData = data;
       var cartItem = _.find(cartData, {'barcode': productItem.barcode});
-      if (cartItem !== undefined) {
+
+      if (cartItem) {
         cartItem.count = cartItem.count+1;
       } else {
         productItem.count = 1;
         cartData.push(productItem);
       }
+      
       $http.post('/api/cartItems', {cartItems: cartData}).success(function () {
         callback();
       });
