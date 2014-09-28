@@ -23,9 +23,7 @@ angular.module('letusgo').service('productService', function ($http) {
     this.cartItem(function (data) {
       var items = data;
       var totalCount = 0;
-      if (items === []) {
-        totalCount = 0;
-      } else {
+      if (items !== []) {
         _.forEach(items, function (item) {
           totalCount += item.count;
         });
