@@ -23,7 +23,7 @@ angular.module('letusgo').service('productService', function ($http) {
     this.cartItem(function (data) {
       var items = data;
       var totalCount = 0;
-      
+
       if (!_.isEmpty(items)) {
         var counts = _.pluck(items,'count');
         totalCount = _.reduce(counts,function(totalCount,num){
@@ -40,7 +40,7 @@ angular.module('letusgo').service('productService', function ($http) {
       var cartData = data;
       var cartItem = _.find(cartData, {'barcode': productItem.barcode});
       if (cartItem !== undefined) {
-        cartItem.count++;
+        cartItem.count = cartItem.count+1;
       } else {
         productItem.count = 1;
         cartData.push(productItem);
