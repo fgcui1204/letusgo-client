@@ -10,7 +10,7 @@ angular.module('letusgo').service('cartService', function ( productService, $htt
 
       if (cartItem !== null) {
         _.forEach(cartItem, function (item) {
-          totalMoney += item.productPrice * item.count;
+          totalMoney += item.price * item.count;
         });
       }
       callback(totalMoney);
@@ -22,7 +22,7 @@ angular.module('letusgo').service('cartService', function ( productService, $htt
     productService.cartItem(function (data) {
       var cartItem = data;
       _.forEach(cartItem, function (cartItem) {
-        if (cartItem.productName === item.productName) {
+        if (cartItem.name === item.name) {
           cartItem.count = item.count;
         }
       });
