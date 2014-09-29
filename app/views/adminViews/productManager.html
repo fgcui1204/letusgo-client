@@ -24,10 +24,10 @@
 
       <div class="panel-body" ng-repeat="product in products|filter:query">
         <div class="row text-center">
-          <div class="col-md-1" id="p_name">{{product.productSort.sname}}</div>
-          <div class="col-md-3" id="p_name">{{product.productName}}</div>
-          <div class="col-md-3" id="p_price">{{product.productPrice}}</div>
-          <div class="col-md-2" id="p_unit">{{product.productUnit}}</div>
+          <div class="col-md-1" id="p_name">{{product.category.name}}</div>
+          <div class="col-md-3" id="p_name">{{product.name}}</div>
+          <div class="col-md-3" id="p_price">{{product.price}}</div>
+          <div class="col-md-2" id="p_unit">{{product.unit}}</div>
           <div class="col-md-3">
             <a class="btn btn-primary btn-sm" ng-click="delete(product.barcode)" role="button">删除</a>
             <a class="btn btn-primary btn-sm" ng-click="toUpdate(product.barcode)" role="button">修改</a>
