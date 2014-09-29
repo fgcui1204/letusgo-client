@@ -1,5 +1,5 @@
 'use strict';
-angular.module('letusgo').service('productManagerService', function ( $location, $http) {
+angular.module('letusgo').service('productManagerService', function ( $http) {
 
   this.product = function (callback) {
     $http.get('/api/items').success(function (data) {
