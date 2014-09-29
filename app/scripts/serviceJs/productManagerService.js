@@ -15,13 +15,13 @@ angular.module('letusgo').service('productManagerService', function ( $http) {
   this.productInfo = function () {
     return {
       barcode: '',
-      productSort: {
-        sid: '',
-        sname: ''
+      category: {
+        id: '',
+        name: ''
       },
-      productName: '',
-      productPrice: '',
-      productUnit: ''
+      name: '',
+      price: '',
+      unit: ''
     };
   };
 
@@ -35,18 +35,19 @@ angular.module('letusgo').service('productManagerService', function ( $http) {
   };
 
 
-  this.judgeIfHaveItems = function(sid,callback){
+  this.judgeIfHaveItems = function(id,callback){
     this.product(function(data){
       var items = data;
       var result = true;
       _.forEach(items,function(item){
-        if(item.productSort.sid === sid){
+        if(item.category.id === id){
          result = false;
         }
       });
         callback(result);
     });
   };
+
   this.doUpdate = function (product, callback) {
     $http.put('/api/items/' + product.barcode, {item: product})
       .success(function (data) {
