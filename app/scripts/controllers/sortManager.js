@@ -27,7 +27,7 @@ angular.module('letusgo')
       });
 
     };
-    $scope.toUpdate = function (sort) {
-      $location.path('/updateSort/' + sort.sid);
+    $scope.toUpdate = function (category) {
+      $location.path('/updateSort/' + category.id);
     };
   });
