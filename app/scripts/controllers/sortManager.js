@@ -1,8 +1,8 @@
 'use strict';
 angular.module('letusgo')
   .controller('sortManagerCtrl', function ($scope, $location, sortManagerService,productManagerService) {
-    sortManagerService.getAllSorts(function (data) {
-      $scope.sorts = data;
+    sortManagerService.getCategories(function (data) {
+      $scope.categories = data;
     });
 
     $scope.addSort = function () {
