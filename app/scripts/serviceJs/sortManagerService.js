@@ -1,41 +1,41 @@
 'use strict';
 angular.module('letusgo').service('sortManagerService', function ($location, $http) {
 
-  this.getAllSorts = function (callback) {
+  this.getCategories = function (callback) {
     $http.get('/api/categories').success(function (data) {
       callback(data);
     });
   };
 
-  this.delete = function (sid) {
-    $http.delete('/api/categories/' + sid);
+  this.delete = function (id) {
+    $http.delete('/api/categories/' + id);
   };
 
-  this.getSortById = function (id, callback) {
-    this.getAllSorts(function (data) {
-      var allSorts = data;
-      var result = _.find(allSorts, { 'sid': id });
+  this.getCategoryById = function (id, callback) {
+    this.getCategories(function (data) {
+      var categories = data;
+      var result = _.find(categories, { 'id': id });
       callback(result);
     });
 
   };
 
-  this.doUpdate = function (sort, callback) {
-    $http.put('/api/categories/' + sort.sid, {sort: sort})
+  this.doUpdate = function (category, callback) {
+    $http.put('/api/categories/' + category.id, {category: category})
       .success(function (data) {
         callback(data);
       });
   };
 
-  this.sortInfo = function () {
+  this.category = function () {
     return {
-      sid: '',
-      sname: ''
+      id: '',
+      name: ''
     };
   };
 
-  this.addSort = function (sort, callback) {
-    $http.post('/api/categories', {sort: sort})
+  this.add = function (category, callback) {
+    $http.post('/api/categories', {category: category})
       .success(function (data) {
         callback(data);
       });
