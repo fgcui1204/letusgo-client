@@ -14,12 +14,12 @@ angular.module('letusgo')
     };
 
 
-    $scope.delete = function (sid) {
-      productManagerService.judgeIfHaveItems(sid,function(data){
+    $scope.delete = function (id) {
+      productManagerService.judgeIfHaveItems(id,function(data){
         if(data){
-          sortManagerService.delete(sid);
-          sortManagerService.getAllSorts(function (data) {
-            $scope.sorts = data;
+          sortManagerService.delete(id);
+          sortManagerService.getCategories(function (data) {
+            $scope.categories = data;
           });
         }else{
           alert('该分类下有商品，不能删除');
