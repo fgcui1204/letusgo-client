@@ -2,8 +2,8 @@
 angular.module('letusgo')
   .controller('updateSort', function ($scope,  sortManagerService, $routeParams, $location) {
 
-    sortManagerService.getSortById($routeParams.sid, function (data) {
-      $scope.sort = data;
+    sortManagerService.getCategoryById($routeParams.id, function (data) {
+      $scope.category = data;
     });
 
     $scope.doUpdate = function () {
