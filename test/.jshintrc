@@ -1,6 +1,6 @@
 {
   "node": true,
-  "browser": true,
+  "browser": false,
   "esnext": true,
   "bitwise": true,
   "camelcase": true,
@@ -24,7 +24,7 @@
     "angular": false,
     "before": false,
     "beforeEach": false,
-    "browser": false,
+    "browser": true,
     "describe": false,
     "expect": false,
     "inject": false,
