@@ -55,7 +55,7 @@ angular
         templateUrl: 'views/adminViews/addSort.html',
         controller: 'sortManagerCtrl'
       })
-      .when('/updateSort/:sid',{
+      .when('/updateSort/:id',{
         templateUrl: 'views/adminViews/updateSort.html',
         controller: 'updateSort'
       })
