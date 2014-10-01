@@ -2,12 +2,12 @@
 angular.module('letusgo')
   .controller('updateProduct', function ($location, $scope,productManagerService, sortManagerService, $routeParams) {
 
-    sortManagerService.getAllSorts(function (data) {
-      $scope.allSorts = data;
+    sortManagerService.getCategories(function (data) {
+      $scope.categories = data;
     });
     productManagerService.getProductById($routeParams.barcode, function (data) {
       var item = data;
-      $scope.productInfo = {'barcode': item.barcode, 'productSort': item.productSort, 'productName': item.productName, 'productPrice': item.productPrice, 'productUnit': item.productUnit};
+      $scope.productInfo = {'barcode': item.barcode, 'category': item.category, 'name': item.name, 'price': item.price, 'unit': item.unit};
     });
 
     $scope.doUpdate = function () {
