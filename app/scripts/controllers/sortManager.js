@@ -5,10 +5,10 @@ angular.module('letusgo')
       $scope.categories = data;
     });
 
-    $scope.addSort = function () {
-      var sort = sortManagerService.sortInfo();
-      sort.sname = $scope.sname;
-      sortManagerService.addSort(sort, function (data) {
+    $scope.add = function () {
+      var category = sortManagerService.category();
+      category.name = $scope.name;
+      sortManagerService.add(category, function (data) {
         $location.path('/sortManager');
       });
     };
