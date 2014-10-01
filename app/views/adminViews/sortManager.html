@@ -16,13 +16,13 @@
         </div>
       </div>
 
-      <div class="panel-body" ng-repeat="sort in sorts">
+      <div class="panel-body" ng-repeat="category in categories">
         <div class="row text-center">
-          <div class="col-md-4" id="p_name">{{sort.sid}}</div>
-          <div class="col-md-4" id="p_name">{{sort.sname}}</div>
+          <div class="col-md-4" id="p_name">{{category.id}}</div>
+          <div class="col-md-4" id="p_name">{{category.name}}</div>
           <div class="col-md-4">
-            <a class="btn btn-primary btn-sm" ng-click="delete(sort.sid)" role="button">删除</a>
-            <a class="btn btn-primary btn-sm" ng-click="toUpdate(sort)" role="button">修改</a>
+            <a class="btn btn-primary btn-sm" ng-click="delete(category.id)" role="button">删除</a>
+            <a class="btn btn-primary btn-sm" ng-click="toUpdate(category)" role="button">修改</a>
           </div>
         </div>
       </div>
