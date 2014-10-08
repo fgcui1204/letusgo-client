@@ -1,7 +1,7 @@
 'use strict';
 
 describe('productCtrl',function(){
-    var $scope,productService,createController,products,$controller;
+    var $scope,productService,createController,products,$controller,cartItems;
     beforeEach(function () {
 
         module('letusgo');
@@ -24,12 +24,21 @@ describe('productCtrl',function(){
         {barcode: '5', category: {id: '3', name: '服装'}, name: 'NIKE鞋', price: '300', unit: '双'}
       ];
 
+      cartItems = [
+        {barcode: '1', category: {id: '1', name: '水果'}, name: '苹果', price: '10', unit: '千克',count:3}
+      ];
+
       spyOn(productService,'product').and.callFake(function(callback){
         callback(products);
+      });
+
+      spyOn(productService,'getTotalCount').and.callFake(function(callback){
+        callback(10);
       });
     });
 
     it ('should get all products', function () {
+
       createController();
 
       productService.product(function(data){
@@ -37,4 +46,14 @@ describe('productCtrl',function(){
         expect($scope.products.length).toBe(2);
       });
     });
+
+  it ('should get total count', function () {
+    
+    createController();
+
+    productService.getTotalCount(function(data){
+      $scope.$parent.totalCount = data;
+      expect($scope.$parent.totalCount).toBe(10);
+    });
+  });
 });
