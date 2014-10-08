@@ -49,11 +49,11 @@ angular
       })
       .when('/sortManager',{
         templateUrl: 'views/adminViews/sortManager.html',
-        controller: 'sortManagerCtrl'
+        controller: 'CategoryManagerCtrl'
       })
       .when('/addSort',{
         templateUrl: 'views/adminViews/addSort.html',
-        controller: 'sortManagerCtrl'
+        controller: 'CategoryManagerCtrl'
       })
       .when('/updateSort/:id',{
         templateUrl: 'views/adminViews/updateSort.html',
