@@ -1,12 +1,11 @@
 'use strict';
 
 xdescribe('productCtrl',function(){
-    var $scope,fromLocal,productService,createController,products,$controller;
+    var $scope,productService,createController,products,$controller;
     beforeEach(function () {
         module('letusgo');
         inject(function ($injector){
             $scope = $injector.get('$rootScope').$new();
-            fromLocal = $injector.get('fromLocal');
             productService = $injector.get('productService');
             $controller = $injector.get('$controller');
 
@@ -14,7 +13,6 @@ xdescribe('productCtrl',function(){
             createController = function () {
             return $controller('ProCtrl', {
               $scope: $scope,
-              fromLocal: fromLocal,
               productService: productService
             });
           };
