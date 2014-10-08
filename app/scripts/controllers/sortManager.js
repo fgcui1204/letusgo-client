@@ -9,7 +9,7 @@ angular.module('letusgo')
       var category = CategoryManagerService.category();
       category.name = $scope.name;
       CategoryManagerService.add(category, function (data) {
-        $location.path('/sortManager');
+        $location.path('/CategoryManager');
       });
     };
 
