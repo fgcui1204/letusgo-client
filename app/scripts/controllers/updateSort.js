@@ -1,13 +1,13 @@
 'use strict';
 angular.module('letusgo')
-  .controller('updateSort', function ($scope,  sortManagerService, $routeParams, $location) {
+  .controller('updateSort', function ($scope,  CategoryManagerService, $routeParams, $location) {
 
-    sortManagerService.getCategoryById($routeParams.id, function (data) {
+    CategoryManagerService.getCategoryById($routeParams.id, function (data) {
       $scope.category = data;
     });
 
     $scope.doUpdate = function () {
-      sortManagerService.doUpdate($scope.category, function () {
+      CategoryManagerService.doUpdate($scope.category, function () {
         $location.path('/sortManager');
       });
 
