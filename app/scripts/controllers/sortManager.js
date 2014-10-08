@@ -1,14 +1,14 @@
 'use strict';
 angular.module('letusgo')
-  .controller('sortManagerCtrl', function ($scope, $location, sortManagerService,productManagerService) {
-    sortManagerService.getCategories(function (data) {
+  .controller('sortManagerCtrl', function ($scope, $location, CategoryManagerService,productManagerService) {
+    CategoryManagerService.getCategories(function (data) {
       $scope.categories = data;
     });
 
     $scope.add = function () {
-      var category = sortManagerService.category();
+      var category = CategoryManagerService.category();
       category.name = $scope.name;
-      sortManagerService.add(category, function (data) {
+      CategoryManagerService.add(category, function (data) {
         $location.path('/sortManager');
       });
     };
@@ -17,8 +17,8 @@ angular.module('letusgo')
     $scope.delete = function (id) {
       productManagerService.judgeIfHaveItems(id,function(data){
         if(data){
-          sortManagerService.delete(id);
-          sortManagerService.getCategories(function (data) {
+          CategoryManagerService.delete(id);
+          CategoryManagerService.getCategories(function (data) {
             $scope.categories = data;
           });
         }else{
