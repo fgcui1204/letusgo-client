@@ -51,7 +51,7 @@ angular
         templateUrl: 'views/adminViews/sortManager.html',
         controller: 'CategoryManagerCtrl'
       })
-      .when('/addSort',{
+      .when('/addCategory',{
         templateUrl: 'views/adminViews/addSort.html',
         controller: 'CategoryManagerCtrl'
       })
