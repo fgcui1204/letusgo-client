@@ -8,7 +8,7 @@ angular.module('letusgo')
 
     $scope.doUpdate = function () {
       CategoryManagerService.doUpdate($scope.category, function () {
-        $location.path('/sortManager');
+        $location.path('/CategoryManager');
       });
 
     };
