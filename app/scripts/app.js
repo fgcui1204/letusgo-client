@@ -57,7 +57,7 @@ angular
       })
       .when('/updateSort/:id',{
         templateUrl: 'views/adminViews/updateSort.html',
-        controller: 'updateSort'
+        controller: 'UpdateCategoryCtrl'
       })
       .otherwise({
         redirectTo: '/homePage'
