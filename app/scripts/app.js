@@ -55,7 +55,7 @@ angular
         templateUrl: 'views/adminViews/addSort.html',
         controller: 'CategoryManagerCtrl'
       })
-      .when('/updateSort/:id',{
+      .when('/updateCategory/:id',{
         templateUrl: 'views/adminViews/updateSort.html',
         controller: 'UpdateCategoryCtrl'
       })

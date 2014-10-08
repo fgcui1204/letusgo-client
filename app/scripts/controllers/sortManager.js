@@ -28,6 +28,6 @@ angular.module('letusgo')
 
     };
     $scope.toUpdate = function (category) {
-      $location.path('/updateSort/' + category.id);
+      $location.path('/updateCategory/' + category.id);
     };
   });
