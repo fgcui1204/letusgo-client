@@ -52,7 +52,7 @@ angular
         controller: 'CategoryManagerCtrl'
       })
       .when('/addCategory',{
-        templateUrl: 'views/adminViews/addSort.html',
+        templateUrl: 'views/adminViews/addCategory.html',
         controller: 'CategoryManagerCtrl'
       })
       .when('/updateCategory/:id',{
