@@ -1,7 +1,7 @@
 'use strict';
 angular.module('letusgo')
-  .controller('addProductCtrl', function ($scope, productManagerService, sortManagerService, $location) {
-    sortManagerService.getCategories(function (data) {
+  .controller('addProductCtrl', function ($scope, productManagerService, CategoryManagerService , $location) {
+    CategoryManagerService .getCategories(function (data) {
       $scope.categories = data;
     });
     $scope.productInfo = productManagerService.productInfo();
