@@ -1,39 +1,42 @@
 'use strict';
 
-xdescribe('addProductCtrl', function () {
-  var $scope, fromLocal, productManagerService, $location, createController, allSort,allProduct;
+describe('addProductCtrl', function () {
+  var $scope, productManagerService,$controller, $location, createController,products,CategoryManagerService,categories;
   beforeEach(function () {
     module('letusgo');
+
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
-      fromLocal = $injector.get('fromLocal');
       productManagerService = $injector.get('productManagerService');
       $location = $injector.get('$location');
-      var $controller = $injector.get('$controller');
+      $controller = $injector.get('$controller');
 
       createController = function () {
         return $controller('addProductCtrl', {
           $scope: $scope,
-          fromLocal: fromLocal,
           $location: $location,
           productManagerService: productManagerService
         });
       };
-
     });
-    allProduct = [
-      {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'},
-      {productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克'}
+
+    products = [
+      {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'},
+      {barcode: '5', category: {id: '3', name: '服装'}, name: 'NIKE鞋', price: '300', unit: '双'}
     ];
-    allSort = ['水果','饮料'];
+
+    categories = [
+      {id: '2', name: '饮料'},
+      {id: '3', name: '服装'}
+    ];
   });
-  it ('it should load all sorts', function () {
+  xit ('it should load all sorts', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     createController();
     expect($scope.allSorts).toEqual(allSort);
   });
 
-  it ('productInfo should be a object', function () {
+  xit ('productInfo should be a object', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     var productInfo = {
       productSort: '',
@@ -45,7 +48,7 @@ xdescribe('addProductCtrl', function () {
     expect($scope.productInfo).toEqual(productInfo);
   });
 
-  it ('it should add product', function () {
+ xit ('it should add product', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     var productInfo = {
       productSort: '水果',
@@ -60,7 +63,7 @@ xdescribe('addProductCtrl', function () {
     expect($scope.productInfo).toEqual(productInfo);
   });
 
-  it('should come into productManager after add product', function () {
+  xit('should come into productManager after add product', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     createController();
     $scope.addProduct();
