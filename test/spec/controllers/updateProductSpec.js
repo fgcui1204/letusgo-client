@@ -56,4 +56,16 @@ describe('updateProduct',function() {
       expect($scope.productInfo).toEqual(data);
     });
   });
+
+ xit ('it should modify item', function () {
+    var item = {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'};
+    var itemModified = {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '4', unit: '瓶'};
+    spyOn(productManagerService, 'getProductById').and.callFake(function (barcode, callback) {
+      callback(item);
+    });
+    createController();
+    productManagerService.doUpdate(itemModified,function(data){
+      expect($scope.productInfo).toEqual(itemModified);
+    });
+  });
 });
