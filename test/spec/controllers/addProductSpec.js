@@ -47,23 +47,28 @@ describe('addProductCtrl', function () {
 
   it ('productInfo should be a object', function () {
     var productInfo = {
-      productSort: '',
-      productName: '',
-      productPrice: '',
-      productUnit: ''
+      barcode: '',
+      category: {
+        id: '',
+        name: ''
+      },
+      name: '',
+      price: '',
+      unit: ''
     };
+
     spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
     createController();
     expect($scope.productInfo).toEqual(productInfo);
   });
 
  xit ('it should add product', function () {
-    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     var productInfo = {
       productSort: '水果',
       productName: '梨',
       productPrice: '5',
-      productUnit: '千克'};
+      productUnit: '千克'
+    };
     spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
     spyOn(productManagerService,'addProduct');
     createController();
