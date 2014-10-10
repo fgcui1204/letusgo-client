@@ -45,9 +45,15 @@ describe('updateProduct',function() {
     });
   });
 
-  it ('it should get product by name', function () {
-    $routeParams.barcode = '4';
+  it ('it should get product by id', function () {
+    var item = {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'};
+    var barcode = '4';
+    spyOn(productManagerService, 'getProductById').and.callFake(function (barcode, callback) {
+      callback(item);
+    });
     createController();
-    expect($scope.productInfo).toEqual({productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'});
+    productManagerService.getProductById(barcode,function(data){
+      expect($scope.productInfo).toEqual(data);
+    });
   });
 });
