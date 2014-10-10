@@ -31,9 +31,13 @@ describe('updateProduct',function() {
       {id: '2', name: '饮料'},
       {id: '3', name: '服装'}
     ];
+
+    spyOn(CategoryManagerService, 'getCategories').and.callFake(function (callback) {
+      callback(categories);
+    });
   });
 
-  it ('it should load all sorts', function () {
+  it ('it should load categories', function () {
     createController();
     CategoryManagerService .getCategories(function(data){
       $scope.categories = data;
@@ -42,8 +46,7 @@ describe('updateProduct',function() {
   });
 
   it ('it should get product by name', function () {
-    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
-    $routeParams.name = '苹果';
+    $routeParams.barcode = '4';
     createController();
     expect($scope.productInfo).toEqual({productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'});
   });
