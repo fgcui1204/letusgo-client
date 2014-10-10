@@ -36,10 +36,13 @@ describe('addProductCtrl', function () {
       callback(categories);
     });
   });
+  
   it ('it should load all sorts', function () {
-    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     createController();
-    expect($scope.allSorts).toEqual(allSort);
+    CategoryManagerService .getCategories(function(data){
+      $scope.categories = data;
+      expect($scope.categories.length).toEqual(2);
+    });
   });
 
   xit ('productInfo should be a object', function () {
