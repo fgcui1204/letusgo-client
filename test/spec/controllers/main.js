@@ -1,6 +1,6 @@
 'use strict';
 
-xdescribe('Controller: MainCtrl', function () {
+describe('Controller: MainCtrl', function () {
   var $scope, productService, createController;
 
   beforeEach(function () {
@@ -22,9 +22,11 @@ xdescribe('Controller: MainCtrl', function () {
   });
 
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    spyOn(productService, 'getTotalCount').and.returnValue(2);
+  it('total count  should be 5 ',function(){
+    spyOn(productService,'getTotalCount').and.callFake(function(callback){
+      callback(5);
+    });
     createController();
-    expect($scope.totalCount).toBe(2);
+    expect($scope.$parent.totalCount).toBe(5);
   });
 });
