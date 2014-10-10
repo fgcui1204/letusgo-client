@@ -5,6 +5,7 @@ angular.module('letusgo')
     CategoryManagerService.getCategories(function (data) {
       $scope.categories = data;
     });
+    
     productManagerService.getProductById($routeParams.barcode, function (data) {
       var item = data;
       $scope.productInfo = {'barcode': item.barcode, 'category': item.category, 'name': item.name, 'price': item.price, 'unit': item.unit};
