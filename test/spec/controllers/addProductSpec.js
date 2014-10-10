@@ -36,7 +36,7 @@ describe('addProductCtrl', function () {
       callback(categories);
     });
   });
-  
+
   it ('it should load all sorts', function () {
     createController();
     CategoryManagerService .getCategories(function(data){
@@ -45,13 +45,13 @@ describe('addProductCtrl', function () {
     });
   });
 
-  xit ('productInfo should be a object', function () {
-    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
+  it ('productInfo should be a object', function () {
     var productInfo = {
       productSort: '',
       productName: '',
       productPrice: '',
-      productUnit: ''};
+      productUnit: ''
+    };
     spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
     createController();
     expect($scope.productInfo).toEqual(productInfo);
