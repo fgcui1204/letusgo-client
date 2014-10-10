@@ -1,13 +1,14 @@
 'use strict';
 
 describe('updateProduct',function() {
-  var $scope, productManagerService, $routeParams,$controller, createController, products,categories;
+  var $scope, productManagerService, $routeParams,$controller, createController,CategoryManagerService, products,categories;
   beforeEach(function () {
     module('letusgo');
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
       productManagerService = $injector.get('productManagerService');
+      CategoryManagerService = $injector.get('CategoryManagerService');
       $routeParams = $injector.get('$routeParams');
       $controller = $injector.get('$controller');
 
@@ -15,7 +16,8 @@ describe('updateProduct',function() {
         return $controller('updateProduct', {
           $scope: $scope,
           $routeParams: $routeParams,
-          productManagerService: productManagerService
+          productManagerService: productManagerService,
+          CategoryManagerService:CategoryManagerService
         });
       };
     });
@@ -32,10 +34,11 @@ describe('updateProduct',function() {
   });
 
   it ('it should load all sorts', function () {
-    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
-    $routeParams.name = '苹果';
     createController();
-    expect($scope.allSorts).toEqual(allSort);
+    CategoryManagerService .getCategories(function(data){
+      $scope.categories = data;
+      expect($scope.categories.length).toEqual(2);
+    });
   });
 
   it ('it should get product by name', function () {
