@@ -1,33 +1,36 @@
 'use strict';
 
-xdescribe('updateProduct',function() {
-  var $scope, fromLocal, productManagerService, $routeParams, createController, allProduct,allSort;
+describe('updateProduct',function() {
+  var $scope, productManagerService, $routeParams,$controller, createController, products,categories;
   beforeEach(function () {
     module('letusgo');
     inject(function ($injector) {
+
       $scope = $injector.get('$rootScope').$new();
-      fromLocal = $injector.get('fromLocal');
       productManagerService = $injector.get('productManagerService');
       $routeParams = $injector.get('$routeParams');
-      var $controller = $injector.get('$controller');
+      $controller = $injector.get('$controller');
 
       createController = function () {
         return $controller('updateProduct', {
           $scope: $scope,
-          fromLocal: fromLocal,
           $routeParams: $routeParams,
           productManagerService: productManagerService
         });
       };
-
     });
-    allProduct = [
-      {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克'},
-      {productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克'}
-    ];
-    allSort = ['水果','饮料'];
 
+    products = [
+      {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'},
+      {barcode: '5', category: {id: '3', name: '服装'}, name: 'NIKE鞋', price: '300', unit: '双'}
+    ];
+
+    categories = [
+      {id: '2', name: '饮料'},
+      {id: '3', name: '服装'}
+    ];
   });
+
   it ('it should load all sorts', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     $routeParams.name = '苹果';
