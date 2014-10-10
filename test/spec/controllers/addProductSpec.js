@@ -8,6 +8,7 @@ describe('addProductCtrl', function () {
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       productManagerService = $injector.get('productManagerService');
+      CategoryManagerService = $injector.get('CategoryManagerService');
       $location = $injector.get('$location');
       $controller = $injector.get('$controller');
 
@@ -15,7 +16,8 @@ describe('addProductCtrl', function () {
         return $controller('addProductCtrl', {
           $scope: $scope,
           $location: $location,
-          productManagerService: productManagerService
+          productManagerService: productManagerService,
+          CategoryManagerService:CategoryManagerService
         });
       };
     });
@@ -29,8 +31,12 @@ describe('addProductCtrl', function () {
       {id: '2', name: '饮料'},
       {id: '3', name: '服装'}
     ];
+
+    spyOn(CategoryManagerService, 'getCategories').and.callFake(function (callback) {
+      callback(categories);
+    });
   });
-  xit ('it should load all sorts', function () {
+  it ('it should load all sorts', function () {
     spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
     createController();
     expect($scope.allSorts).toEqual(allSort);
