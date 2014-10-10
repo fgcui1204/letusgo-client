@@ -1,24 +1,19 @@
 'use strict';
 
-xdescribe('cartCtrl',function() {
-  var $scope, fromLocal, productService, createController,cartService,cartProduct;
+describe('cartCtrl',function() {
+  var $scope,$controller, productService, createController,cartService,cartProduct;
   beforeEach(function () {
     module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
-      fromLocal = $injector.get('fromLocal');
       productService = $injector.get('productService');
       cartService = $injector.get('cartService');
 
-      var $controller = $injector.get('$controller');
-
-      cartProduct = [{productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克',count:1},
-        {productSort:'水果',productName:'香蕉',productPrice:'5',productUnit:'千克',count:2}];
+      $controller = $injector.get('$controller');
 
       createController = function () {
         return $controller('CartCtrl', {
           $scope: $scope,
-          fromLocal: fromLocal,
           productService: productService,
           cartService:cartService
         });
