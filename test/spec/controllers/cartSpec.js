@@ -38,8 +38,15 @@ describe('cartCtrl',function() {
     });
   });
 
+  it('total count  should be 5 ',function(){
+    spyOn(productService,'getTotalCount').and.callFake(function(callback){
+      callback(5);
+    });
+    createController();
+    expect($scope.$parent.totalCount).toBe(5);
+  });
   xit('totalMoney should be 20 ',function(){
-    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
+
     spyOn(productService,'getTotalCount');
     spyOn(cartService,'getTotalMoney').and.returnValue(20);
     createController();
