@@ -32,9 +32,7 @@ describe('ProductManagerCtrl', function () {
   });
 
   it('it should get all products', function () {
-
     createController();
-
     productManagerService.product(function (data) {
       $scope.products = data;
       expect($scope.products).toEqual(products);
@@ -42,11 +40,8 @@ describe('ProductManagerCtrl', function () {
   });
 
   it('it should delete the product', function () {
-
     spyOn(productManagerService, 'delete');
-
     createController();
-
     $scope.delete('4');
     expect(productManagerService.delete.calls.count()).toBe(1);
   });
