@@ -39,13 +39,11 @@ describe('ProductManagerCtrl',function() {
     });
   });
 
-  xit ('it should delete the product', function () {
-    spyOn(productManagerService,'delete').and.returnValue(allProduct);
-    spyOn(fromLocal,'getData').and.returnValue(allProduct);
+  it ('it should delete the product', function () {
+    spyOn(productManagerService,'delete');
     createController();
-    var pname = '苹果';
-    $scope.delete(pname);
-    expect(productManagerService.delete).toHaveBeenCalledWith(pname);
+    $scope.delete('4');
+    expect(productManagerService.delete.calls.count()).toBe(1);
   });
 
   xit('should come into addProduct when click the add product', function () {
