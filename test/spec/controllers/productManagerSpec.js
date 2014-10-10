@@ -46,21 +46,22 @@ describe('ProductManagerCtrl', function () {
     spyOn(productManagerService, 'delete');
 
     createController();
-    
+
     $scope.delete('4');
     expect(productManagerService.delete.calls.count()).toBe(1);
   });
 
-  xit('should come into addProduct when click the add product', function () {
+  it('should come into addProduct when click the add product', function () {
     createController();
     $scope.toAdd();
     expect($location.path() === '/addProduct').toBe(true);
   });
 
-  xit('should come into update when click the update button', function () {
-    var product = {productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克'};
+  it('should come into update when click the update button', function () {
+    var product =  {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'};
     createController();
-    $scope.toUpdate(product);
-    expect($location.path() === '/updateProduct/香蕉').toBe(true);
+    $scope.toUpdate(product.barcode);
+    console.log($location.path());
+    expect($location.path() === '/updateProduct/4').toBe(true);
   });
 });
