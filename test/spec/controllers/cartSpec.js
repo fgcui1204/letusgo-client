@@ -45,13 +45,14 @@ describe('cartCtrl',function() {
     createController();
     expect($scope.$parent.totalCount).toBe(5);
   });
-  xit('totalMoney should be 20 ',function(){
 
-    spyOn(productService,'getTotalCount');
-    spyOn(cartService,'getTotalMoney').and.returnValue(20);
+  it('totalMoney should be 20 ',function(){
+    var totalMoney = 60;
+    spyOn(cartService,'getTotalMoney').and.callFake(function(callback){
+      callback(totalMoney);
+    });
     createController();
-    expect(cartService.getTotalMoney.calls.count()).toBe(1);
-    expect($scope.totalMoney).toBe(20);
+    expect($scope.totalMoney).toBe(60);
   });
   xit('the function changeCount() ',function(){
     var item = [{productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克',count:2}];
