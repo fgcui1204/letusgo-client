@@ -56,7 +56,6 @@ describe('ProductManagerCtrl', function () {
     var product =  {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'};
     createController();
     $scope.toUpdate(product.barcode);
-    console.log($location.path());
     expect($location.path() === '/updateProduct/4').toBe(true);
   });
 });
