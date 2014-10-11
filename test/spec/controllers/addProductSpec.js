@@ -66,7 +66,7 @@ describe('addProductCtrl', function () {
 
     spyOn(productManagerService,'addProduct');
     createController();
-    
+
     $scope.addProduct();
     expect(productManagerService.addProduct.calls.count()).toBe(1);
   });
