@@ -2,15 +2,11 @@
 angular.module('letusgo')
   .controller('ProductManagerCtrl', function ($location,$scope, productManagerService) {
 
-    productManagerService.product(function (data) {
-      $scope.products = data;
-    });
+    initProducts();
 
     $scope.delete = function (barcode) {
       productManagerService.delete(barcode);
-      productManagerService.product(function (data) {
-        $scope.products = data;
-      });
+      initProducts();
     };
 
     $scope.toAdd = function () {
@@ -21,4 +17,9 @@ angular.module('letusgo')
       $location.path('/updateProduct/' + barcode);
     };
 
+    function initProducts(){
+      productManagerService.product(function (data) {
+        $scope.products = data;
+      });
+    }
   });
