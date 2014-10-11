@@ -81,8 +81,7 @@ describe('addProductCtrl', function () {
 //    expect(products.length).toEqual(3);
 //  });
 
-  xit('should come into productManager after add product', function () {
-    spyOn(productManagerService,'getAllSort').and.returnValue(allSort);
+  it('should come into productManager after add product', function () {
     createController();
     $scope.addProduct();
     expect($location.path() === '/productManager').toBe(true);
