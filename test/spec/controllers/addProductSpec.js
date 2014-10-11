@@ -62,28 +62,12 @@ describe('addProductCtrl', function () {
     expect($scope.productInfo).toEqual(productInfo);
   });
 
-//it ('it should add product', function () {
-//    var productInfo = {
-//      barcode: '6',
-//      category: {
-//        id: '2',
-//        name: '饮料'
-//      },
-//      name: '雪碧',
-//      price: '4.5',
-//      unit: '瓶'
-//    };
-//    spyOn(productManagerService,'addProduct').and.callFake(function (callback) {
-//      callback(productInfo);
-//    });
-//    createController();
-//    $scope.addProduct();
-//    expect(products.length).toEqual(3);
-//  });
-
   it('should come into productManager after add product', function () {
+
+    spyOn(productManagerService,'addProduct');
     createController();
+    
     $scope.addProduct();
-    expect($location.path() === '/productManager').toBe(true);
+    expect(productManagerService.addProduct.calls.count()).toBe(1);
   });
 });
