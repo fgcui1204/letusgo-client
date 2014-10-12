@@ -58,10 +58,12 @@ describe('CategoryManagerCtrl',function() {
     expect(CategoryManagerService.add.calls.count()).toBe(1);
   });
 
-  xit('should come into sortManager after add sort', function () {
+  it('should call judge method', function () {
+    spyOn(productManagerService,'judgeIfHaveItems');
     createController();
-    $scope.addSort();
-    expect($location.path() === '/sortManager').toBe(true);
+
+    $scope.delete();
+    expect(productManagerService.judgeIfHaveItems.calls.count()).toBe(1);
   });
 
   xit ('it should delete the sort', function () {
