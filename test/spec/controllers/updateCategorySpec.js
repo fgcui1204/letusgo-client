@@ -1,29 +1,29 @@
 'use strict';
 
-xdescribe('updateSort',function() {
-  var $scope, fromLocal, $location,sortManagerService, $routeParams, createController, allSort;
+describe('UpdateCategoryCtrl',function() {
+  var $scope, $location,CategoryManagerService, $routeParams, createController, categories;
   beforeEach(function () {
     module('letusgo');
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       $location = $injector.get('$location');
-      fromLocal = $injector.get('fromLocal');
-      sortManagerService = $injector.get('sortManagerService');
+      CategoryManagerService = $injector.get('CategoryManagerService');
       $routeParams = $injector.get('$routeParams');
       var $controller = $injector.get('$controller');
 
       createController = function () {
-        return $controller('updateSort', {
+        return $controller('UpdateCategoryCtrl', {
           $scope: $scope,
           $location: $location,
-          fromLocal: fromLocal,
           $routeParams: $routeParams,
-          sortManagerService: sortManagerService
+          CategoryManagerService: CategoryManagerService
         });
       };
-
     });
-    allSort = [{sid:'1',sname:'水果'},{sid:'2',sname:'饮料'}];
+    categories = [
+      {id:'1',name:'水果'},
+      {id:'2',name:'饮料'}
+    ];
   });
   xit ('it should get sort by id', function () {
     var sort = {sid:'1',sname:'水果'};
