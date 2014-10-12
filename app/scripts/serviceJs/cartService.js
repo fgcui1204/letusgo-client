@@ -33,7 +33,12 @@ angular.module('letusgo').service('cartService', function ( productService, $htt
         callback();
       });
     });
+  };
 
+  this.remove = function(callback){
+    $http.delete('/api/payment').success(function(data){
+      callback(data);
+    });
   };
 
 });

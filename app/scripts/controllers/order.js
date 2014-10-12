@@ -1,6 +1,6 @@
 'use strict';
 angular.module('letusgo')
-  .controller('OrderCtrl', function ($scope, $location, cartService, productService, orderService) {
+  .controller('OrderCtrl', function ($scope, $location, cartService, productService) {
 
     function initTotalCount(){
       productService.getTotalCount(function (data) {
@@ -18,7 +18,7 @@ angular.module('letusgo')
       $scope.totalMoney = data;
     });
         $scope.remove = function(){
-            orderService.remove(function(){
+            cartService.remove(function(){
               initTotalCount();
             });
           $location.path('/homePage').replace();
