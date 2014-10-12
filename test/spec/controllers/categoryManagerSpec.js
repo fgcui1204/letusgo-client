@@ -74,20 +74,11 @@ describe('CategoryManagerCtrl',function() {
     expect(CategoryManagerService.delete.calls.count()).toBe(1);
   });
 
-  xit ('it should delete the sort', function () {
-    spyOn(sortManagerService,'delete').and.returnValue(allSort);
-    spyOn(fromLocal,'getData').and.returnValue(allSort);
+  it('should come into update when click the update button', function () {
+    var category = {id:'1',name:'水果'};
     createController();
-    var sort = {sid:'1',sname:'水果'};
-    $scope.delete(sort);
-    expect(sortManagerService.delete).toHaveBeenCalledWith(sort);
-  });
-
-  xit('should come into update when click the update button', function () {
-    var sort = {sid:'1',sname:'水果'};
-    createController();
-    $scope.toUpdate(sort);
-    expect($location.path() === '/updateSort/1').toBe(true);
+    $scope.toUpdate(category);
+    expect($location.path() === '/updateCategory/1').toBe(true);
   });
 });
 
