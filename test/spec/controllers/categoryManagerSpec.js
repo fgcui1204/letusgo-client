@@ -1,21 +1,22 @@
 'use strict';
-xdescribe('sortManagerCtrl',function() {
-  var $scope, fromLocal, sortManagerService, $location, createController, allSort;
+describe('CategoryManagerCtrl',function() {
+  var $scope, CategoryManagerService, $location, createController, productManagerService,$controller;
   beforeEach(function () {
     module('letusgo');
+
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
-      fromLocal = $injector.get('fromLocal');
-      sortManagerService = $injector.get('sortManagerService');
+      CategoryManagerService = $injector.get('CategoryManagerService');
+      productManagerService = $injector.get('productManagerService');
       $location = $injector.get('$location');
-      var $controller = $injector.get('$controller');
+      $controller = $injector.get('$controller');
 
       createController = function () {
         return $controller('sortManagerCtrl', {
           $scope: $scope,
-          fromLocal: fromLocal,
           $location: $location,
-          sortManagerService: sortManagerService
+          CategoryManagerService: CategoryManagerService,
+          productManagerService: productManagerService
         });
       };
 
