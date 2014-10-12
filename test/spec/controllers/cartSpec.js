@@ -54,17 +54,12 @@ describe('cartCtrl',function() {
     createController();
     expect($scope.totalMoney).toBe(60);
   });
-  xit('the function changeCount() ',function(){
-    var item = [{productSort:'水果',productName:'苹果',productPrice:'10',productUnit:'千克',count:2}];
-    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
-    spyOn(productService,'getTotalCount');
-    spyOn(cartService,'getTotalMoney').and.returnValue(20);
+
+  it('the function changeCount() ',function(){
+    var item = [{barcode: '2', category: {id: '1', name: '水果'}, name: '香蕉', price: '5', unit: '千克',count:'3'}];
     spyOn(cartService,'changeCount');
     createController();
     $scope.changeCount(item);
     expect(cartService.changeCount.calls.count()).toBe(1);
-    //expect($scope.totalMoney).toBe(20);
   });
-
-
 });
