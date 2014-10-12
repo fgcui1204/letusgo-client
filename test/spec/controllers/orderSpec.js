@@ -33,11 +33,13 @@ describe('cartCtrl',function() {
     });
   });
 
-  xit('test the orderItems',function(){
-    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
-    createController();
-    expect($scope.orderItems.length).toEqual(2);
-  });
+  it('test the orderItems',function(){
+      createController();
+      productService.cartItem(function (data) {
+        $scope.orderItems = data;
+        expect($scope.orderItems.length).toBe(2);
+      });
+    });
 
   it('total count  should be 5 ',function(){
     spyOn(productService,'getTotalCount').and.callFake(function(callback){
