@@ -9,8 +9,7 @@ angular.module('letusgo')
     $scope.productInfo = productManagerService.productInfo();
 
     $scope.addProduct = function () {
-      var productInfo = $scope.productInfo;
-      productManagerService.addProduct(productInfo, function (data) {
+      productManagerService.addProduct($scope.productInfo, function () {
         $location.path('/productManager');
       });
     };
