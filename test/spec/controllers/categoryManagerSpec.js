@@ -40,12 +40,14 @@ describe('CategoryManagerCtrl',function() {
     });
   });
 
-  xit ('it should add sort', function () {
-    $scope.sort = {sid:'3',sname:'服装'};
-    spyOn(fromLocal,'getData').and.returnValue(allSort);
+  it ('it should call category', function () {
+    var category = {
+      id:'',
+      name:''
+    };
+    spyOn(CategoryManagerService,'category').and.returnValue(category);
     createController();
-    $scope.addSort();
-    expect(allSort.length).toEqual(3);
+    expect(CategoryManagerService.category()).toBe(category);
   });
 
   xit('should come into sortManager after add sort', function () {
