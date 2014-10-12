@@ -66,6 +66,14 @@ describe('CategoryManagerCtrl',function() {
     expect(productManagerService.judgeIfHaveItems.calls.count()).toBe(1);
   });
 
+  xit('should call delete method', function () {
+    spyOn(CategoryManagerService,'delete');
+    createController();
+
+    $scope.delete();
+    expect(CategoryManagerService.delete.calls.count()).toBe(1);
+  });
+
   xit ('it should delete the sort', function () {
     spyOn(sortManagerService,'delete').and.returnValue(allSort);
     spyOn(fromLocal,'getData').and.returnValue(allSort);
