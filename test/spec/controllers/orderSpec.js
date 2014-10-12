@@ -29,18 +29,31 @@ describe('cartCtrl',function() {
       };
     });
   });
-  it('test the orderItems',function(){
+
+  xit('test the orderItems',function(){
     spyOn(fromLocal,'getData').and.returnValue(cartProduct);
     createController();
     expect($scope.orderItems.length).toEqual(2);
   });
-  it('test the totalMoney',function(){
-    spyOn(fromLocal,'getData').and.returnValue(cartProduct);
-    spyOn(cartService,'getTotalMoney').and.returnValue(10);
+
+  it('total count  should be 5 ',function(){
+    spyOn(productService,'getTotalCount').and.callFake(function(callback){
+      callback(5);
+    });
     createController();
-    expect($scope.totalMoney).toEqual(10);
+    expect($scope.$parent.totalCount).toBe(5);
   });
-  it('test the remove()',function(){
+
+  it('totalMoney should be 20 ',function(){
+    var totalMoney = 60;
+    spyOn(cartService,'getTotalMoney').and.callFake(function(callback){
+      callback(totalMoney);
+    });
+    createController();
+    expect($scope.totalMoney).toBe(60);
+  });
+
+  xit('test the remove()',function(){
     spyOn(fromLocal,'getData').and.returnValue(cartProduct);
     spyOn(cartService,'getTotalMoney').and.returnValue(10);
     spyOn(orderService,'remove');
