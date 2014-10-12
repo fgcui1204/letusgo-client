@@ -1,27 +1,27 @@
 'use strict';
 
-xdescribe('cartCtrl',function() {
-  var $scope, fromLocal, productService, createController, cartService, cartProduct,orderService;
+describe('cartCtrl',function() {
+  var $scope,productService,$location,createController, cartService,cartItems,orderService,$controller;
   beforeEach(function () {
     module('letusgo');
+
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
-      fromLocal = $injector.get('fromLocal');
+      $location = $injector.get('$location');
       productService = $injector.get('productService');
       cartService = $injector.get('cartService');
       orderService = $injector.get('orderService');
+      $controller = $injector.get('$controller');
 
-      var $controller = $injector.get('$controller');
-
-      cartProduct = [
-        {productSort: '水果', productName: '苹果', productPrice: '10', productUnit: '千克', count: 1},
-        {productSort: '水果', productName: '香蕉', productPrice: '5', productUnit: '千克', count: 2}
+      cartItems = [
+        {barcode: '2', category: {id: '1', name: '水果'}, name: '香蕉', price: '5', unit: '千克',count:'3'},
+        {barcode: '3', category: {id: '2', name: '饮料'}, name: '可乐', price: '5', unit: '瓶',count:'2'}
       ];
 
       createController = function () {
         return $controller('OrderCtrl', {
           $scope: $scope,
-          fromLocal: fromLocal,
+          $location: $location,
           productService: productService,
           cartService: cartService,
           orderService:orderService
