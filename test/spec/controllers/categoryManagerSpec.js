@@ -51,14 +51,13 @@ describe('CategoryManagerCtrl',function() {
   });
 
   it('should call add method', function () {
-
     spyOn(CategoryManagerService,'add');
     createController();
 
     $scope.add();
     expect(CategoryManagerService.add.calls.count()).toBe(1);
   });
-  
+
   xit('should come into sortManager after add sort', function () {
     createController();
     $scope.addSort();
