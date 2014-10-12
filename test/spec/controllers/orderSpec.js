@@ -13,11 +13,6 @@ describe('cartCtrl',function() {
       orderService = $injector.get('orderService');
       $controller = $injector.get('$controller');
 
-      cartItems = [
-        {barcode: '2', category: {id: '1', name: '水果'}, name: '香蕉', price: '5', unit: '千克',count:'3'},
-        {barcode: '3', category: {id: '2', name: '饮料'}, name: '可乐', price: '5', unit: '瓶',count:'2'}
-      ];
-
       createController = function () {
         return $controller('OrderCtrl', {
           $scope: $scope,
@@ -27,6 +22,14 @@ describe('cartCtrl',function() {
           orderService:orderService
         });
       };
+    });
+    cartItems = [
+      {barcode: '2', category: {id: '1', name: '水果'}, name: '香蕉', price: '5', unit: '千克',count:'3'},
+      {barcode: '3', category: {id: '2', name: '饮料'}, name: '可乐', price: '5', unit: '瓶',count:'2'}
+    ];
+
+    spyOn(productService,'cartItem').and.callFake(function(callback){
+      callback(cartItems);
     });
   });
 
