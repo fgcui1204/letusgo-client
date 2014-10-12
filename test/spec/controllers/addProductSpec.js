@@ -62,7 +62,7 @@ describe('addProductCtrl', function () {
     expect($scope.productInfo).toEqual(productInfo);
   });
 
-  it('should come into productManager after add product', function () {
+  it('should call addProduct method', function () {
 
     spyOn(productManagerService,'addProduct');
     createController();
