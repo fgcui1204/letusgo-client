@@ -18,7 +18,7 @@ angular.module('letusgo')
       $scope.totalMoney = data;
     });
         $scope.remove = function(){
-            orderService.remove(function(data){
+            orderService.remove(function(){
               initTotalCount();
             });
           $location.path('/homePage').replace();
