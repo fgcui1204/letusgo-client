@@ -1,9 +1,14 @@
 'use strict';
 angular.module('letusgo')
   .controller('CategoryManagerCtrl', function ($scope, $location, CategoryManagerService,productManagerService) {
-    CategoryManagerService.getCategories(function (data) {
-      $scope.categories = data;
-    });
+
+    function initCategories(){
+      CategoryManagerService.getCategories(function (data) {
+        $scope.categories = data;
+      });
+    }
+
+    initCategories();
 
     $scope.add = function () {
       var category = CategoryManagerService.category();
@@ -18,9 +23,7 @@ angular.module('letusgo')
       productManagerService.judgeIfHaveItems(id,function(data){
         if(data){
           CategoryManagerService.delete(id);
-          CategoryManagerService.getCategories(function (data) {
-            $scope.categories = data;
-          });
+          initCategories();
         }else{
           alert('该分类下有商品，不能删除');
         }
