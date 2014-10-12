@@ -20,17 +20,27 @@ describe('UpdateCategoryCtrl',function() {
         });
       };
     });
+
     categories = [
       {id:'1',name:'水果'},
       {id:'2',name:'饮料'}
     ];
+
+    spyOn(CategoryManagerService, 'getCategories').and.callFake(function (callback) {
+      callback(categories);
+    });
   });
-  xit ('it should get sort by id', function () {
-    var sort = {sid:'1',sname:'水果'};
-    spyOn(sortManagerService,'getSortById').and.returnValue(sort);
-    $routeParams.sid = 1;
+
+  it ('it should get sort by id', function () {
+    var category = {id:'1',name:'水果'};
+    var params = 1;
+    spyOn(CategoryManagerService,'getCategoryById').and.callFake(function(params,callback) {
+      callback(category);
+    });
     createController();
-    expect($scope.sort).toEqual(sort);
+    CategoryManagerService.getCategoryById(params,function(data){
+      expect($scope.category).toEqual(data);
+    });
   });
 
   xit ('it should update sort info', function () {
