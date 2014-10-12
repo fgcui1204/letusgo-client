@@ -43,11 +43,11 @@ describe('UpdateCategoryCtrl',function() {
     });
   });
 
-  xit ('it should update sort info', function () {
-    $scope.sort = {sid:'1',sname:'服装'};
-    spyOn(sortManagerService,'doUpdate').and.returnValue(allSort);
+  it ('it should call doUpdate', function () {
+    spyOn(CategoryManagerService,'doUpdate');
     createController();
-    console.log(allSort);
-    expect($scope.sort).toEqual(sort);
+
+    $scope.doUpdate();
+    expect(CategoryManagerService.doUpdate.calls.count()).toBe(1);
   });
 });
