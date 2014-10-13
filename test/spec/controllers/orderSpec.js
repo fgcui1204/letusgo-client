@@ -1,7 +1,7 @@
 'use strict';
 
 describe('cartCtrl',function() {
-  var $scope,productService,$location,createController, cartService,cartItems,orderService,$controller;
+  var $scope,productService,$location,createController, cartService,cartItems,$controller;
   beforeEach(function () {
     module('letusgo');
 
@@ -10,7 +10,7 @@ describe('cartCtrl',function() {
       $location = $injector.get('$location');
       productService = $injector.get('productService');
       cartService = $injector.get('cartService');
-      orderService = $injector.get('orderService');
+      cartService = $injector.get('cartService');
       $controller = $injector.get('$controller');
 
       createController = function () {
@@ -18,8 +18,7 @@ describe('cartCtrl',function() {
           $scope: $scope,
           $location: $location,
           productService: productService,
-          cartService: cartService,
-          orderService:orderService
+          cartService: cartService
         });
       };
     });
@@ -61,10 +60,10 @@ describe('cartCtrl',function() {
   xit('test the remove()',function(){
     spyOn(fromLocal,'getData').and.returnValue(cartProduct);
     spyOn(cartService,'getTotalMoney').and.returnValue(10);
-    spyOn(orderService,'remove');
+    spyOn(cartService,'remove');
     createController();
     $scope.remove();
-    expect(orderService.remove.calls.count()).toBe(1);
+    expect(cartService.remove.calls.count()).toBe(1);
     expect($scope.totalMoney).toEqual(10);
   });
 });
