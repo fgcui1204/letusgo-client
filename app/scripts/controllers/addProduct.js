@@ -1,15 +1,15 @@
 'use strict';
 angular.module('letusgo')
-  .controller('addProductCtrl', function ($scope, productManagerService, CategoryManagerService , $location) {
+  .controller('addProductCtrl', function ($scope, productService, CategoryManagerService , $location) {
 
     CategoryManagerService .getCategories(function (data) {
       $scope.categories = data;
     });
 
-    $scope.productInfo = productManagerService.productInfo();
+    $scope.productInfo = productService.productInfo();
 
     $scope.addProduct = function () {
-      productManagerService.addProduct($scope.productInfo, function () {
+      productService.addProduct($scope.productInfo, function () {
         $location.path('/productManager');
       });
     };

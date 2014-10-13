@@ -1,13 +1,13 @@
 'use strict';
 
 describe('addProductCtrl', function () {
-  var $scope, productManagerService,$controller, $location, createController,products,CategoryManagerService,categories;
+  var $scope, productService,$controller, $location, createController,products,CategoryManagerService,categories;
   beforeEach(function () {
     module('letusgo');
 
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
-      productManagerService = $injector.get('productManagerService');
+      productService = $injector.get('productService');
       CategoryManagerService = $injector.get('CategoryManagerService');
       $location = $injector.get('$location');
       $controller = $injector.get('$controller');
@@ -16,7 +16,7 @@ describe('addProductCtrl', function () {
         return $controller('addProductCtrl', {
           $scope: $scope,
           $location: $location,
-          productManagerService: productManagerService,
+          productService: productService,
           CategoryManagerService:CategoryManagerService
         });
       };
@@ -57,17 +57,17 @@ describe('addProductCtrl', function () {
       unit: ''
     };
 
-    spyOn(productManagerService,'productInfo').and.returnValue(productInfo);
+    spyOn(productService,'productInfo').and.returnValue(productInfo);
     createController();
     expect($scope.productInfo).toEqual(productInfo);
   });
 
   it('should call addProduct method', function () {
 
-    spyOn(productManagerService,'addProduct');
+    spyOn(productService,'addProduct');
     createController();
 
     $scope.addProduct();
-    expect(productManagerService.addProduct.calls.count()).toBe(1);
+    expect(productService.addProduct.calls.count()).toBe(1);
   });
 });

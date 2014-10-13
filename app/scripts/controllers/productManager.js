@@ -1,11 +1,11 @@
 'use strict';
 angular.module('letusgo')
-  .controller('ProductManagerCtrl', function ($location,$scope, productManagerService) {
+  .controller('ProductManagerCtrl', function ($location,$scope, productService) {
 
     initProducts();
 
     $scope.delete = function (barcode) {
-      productManagerService.delete(barcode);
+      productService.delete(barcode);
       initProducts();
     };
 
@@ -18,7 +18,7 @@ angular.module('letusgo')
     };
 
     function initProducts(){
-      productManagerService.product(function (data) {
+      productService.product(function (data) {
         $scope.products = data;
       });
     }

@@ -1,13 +1,13 @@
 'use strict';
 describe('CategoryManagerCtrl',function() {
-  var $scope, CategoryManagerService, $location, createController, productManagerService,$controller,categories;
+  var $scope, CategoryManagerService, $location, createController, productService,$controller,categories;
   beforeEach(function () {
     module('letusgo');
 
     inject(function ($injector) {
       $scope = $injector.get('$rootScope').$new();
       CategoryManagerService = $injector.get('CategoryManagerService');
-      productManagerService = $injector.get('productManagerService');
+      productService = $injector.get('productService');
       $location = $injector.get('$location');
       $controller = $injector.get('$controller');
 
@@ -16,7 +16,7 @@ describe('CategoryManagerCtrl',function() {
           $scope: $scope,
           $location: $location,
           CategoryManagerService: CategoryManagerService,
-          productManagerService: productManagerService
+          productService: productService
         });
       };
 
@@ -59,11 +59,11 @@ describe('CategoryManagerCtrl',function() {
   });
 
   it('should call judge method', function () {
-    spyOn(productManagerService,'judgeIfHaveItems');
+    spyOn(productService,'judgeIfHaveItems');
     createController();
 
     $scope.delete();
-    expect(productManagerService.judgeIfHaveItems.calls.count()).toBe(1);
+    expect(productService.judgeIfHaveItems.calls.count()).toBe(1);
   });
 
   xit('should call delete method', function () {

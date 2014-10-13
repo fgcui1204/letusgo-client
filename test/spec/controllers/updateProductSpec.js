@@ -1,13 +1,13 @@
 'use strict';
 
 describe('updateProduct',function() {
-  var $scope, productManagerService, $routeParams,$controller, createController,CategoryManagerService, products,categories;
+  var $scope, productService, $routeParams,$controller, createController,CategoryManagerService, products,categories;
   beforeEach(function () {
     module('letusgo');
     inject(function ($injector) {
 
       $scope = $injector.get('$rootScope').$new();
-      productManagerService = $injector.get('productManagerService');
+      productService = $injector.get('productService');
       CategoryManagerService = $injector.get('CategoryManagerService');
       $routeParams = $injector.get('$routeParams');
       $controller = $injector.get('$controller');
@@ -16,7 +16,7 @@ describe('updateProduct',function() {
         return $controller('updateProduct', {
           $scope: $scope,
           $routeParams: $routeParams,
-          productManagerService: productManagerService,
+          productService: productService,
           CategoryManagerService:CategoryManagerService
         });
       };
@@ -48,20 +48,20 @@ describe('updateProduct',function() {
   it ('it should get product by id', function () {
     var item = {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'};
     var barcode = '4';
-    spyOn(productManagerService, 'getProductById').and.callFake(function (barcode, callback) {
+    spyOn(productService, 'getProductById').and.callFake(function (barcode, callback) {
       callback(item);
     });
     createController();
-    productManagerService.getProductById(barcode,function(data){
+    productService.getProductById(barcode,function(data){
       expect($scope.productInfo).toEqual(data);
     });
   });
 
  it ('it should call doUpdate', function () {
-    spyOn(productManagerService,'doUpdate');
+    spyOn(productService,'doUpdate');
     createController();
 
    $scope.doUpdate();
-   expect(productManagerService.doUpdate.calls.count()).toBe(1);
+   expect(productService.doUpdate.calls.count()).toBe(1);
   });
 });

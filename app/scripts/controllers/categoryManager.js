@@ -1,6 +1,6 @@
 'use strict';
 angular.module('letusgo')
-  .controller('CategoryManagerCtrl', function ($scope, $location, CategoryManagerService,productManagerService) {
+  .controller('CategoryManagerCtrl', function ($scope, $location, CategoryManagerService,productService) {
 
     function initCategories(){
       CategoryManagerService.getCategories(function (data) {
@@ -20,7 +20,7 @@ angular.module('letusgo')
 
 
     $scope.delete = function (id) {
-      productManagerService.judgeIfHaveItems(id,function(data){
+      productService.judgeIfHaveItems(id,function(data){
         if(data){
           CategoryManagerService.delete(id);
           initCategories();
