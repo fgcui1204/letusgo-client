@@ -51,7 +51,60 @@ angular.module('letusgo').service('productService', function ($http) {
         callback();
       });
     });
+  };
+
+  this.delete = function (barcode) {
+    $http.delete('/api/items/' + barcode);
+  };
 
 
+  this.productInfo = function () {
+    return {
+      barcode: '',
+      category: {
+        id: '',
+        name: ''
+      },
+      name: '',
+      price: '',
+      unit: ''
+    };
+  };
+
+  this.getProductById = function (barcode, callback) {
+    this.product(function (data) {
+      var items = data;
+      var item = _.find(items, { 'barcode': barcode });
+      callback(item);
+    });
+
+  };
+
+
+  this.judgeIfHaveItems = function(id,callback){
+    this.product(function(data){
+      var items = data;
+      var result = true;
+      _.forEach(items,function(item){
+        if(item.category.id === id){
+          result = false;
+        }
+      });
+      callback(result);
+    });
+  };
+
+  this.doUpdate = function (product, callback) {
+    $http.put('/api/items/' + product.barcode, {item: product})
+      .success(function (data) {
+        callback(data);
+      });
+  };
+
+  this.addProduct = function (product, callback) {
+    $http.post('/api/items', {item: product})
+      .success(function (data) {
+        callback(data);
+      });
   };
 });
