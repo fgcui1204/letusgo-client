@@ -41,14 +41,13 @@ describe('productService', function () {
     $httpBackend.flush();
   });
 
-  xit('it should test cartItems', function () {
-    productService.cartItem(function(callback){
-
-      callback(items);
-      expect(items[0].productName).toEqual('苹果');
-      expect(items[3].productName).toEqual('可乐');
-      expect(items.length).toEqual(3);
+  it('it should load cartItems', function () {
+    $httpBackend.expectGET('/api/cartItems').respond(200, cartItems);
+    productService.cartItem(function (data) {
+      expect(data.length).toBe(1);
+      expect(data[0].name).toEqual('苹果');
     });
+    $httpBackend.flush();
   });
 
   xit('it should test sorts', function () {
