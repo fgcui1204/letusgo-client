@@ -1,31 +1,35 @@
 'use strict';
 
-xdescribe('productService', function () {
-  var $http, productService,items,cartItems,sorts;
+describe('productService', function () {
+  var $http, productService,products,cartItems,categories,$httpBackend;
+
   beforeEach(function () {
     module('letusgo');
 
     inject(function ($injector) {
+      $httpBackend = $injector.get('$httpBackend');
       productService = $injector.get('productService');
       $http = $injector.get('$http');
     });
 
-    items = [
-      {barcode: '1', productSort: {sid: '1', sname: '水果'}, productName: '苹果', productPrice: '10', productUnit: '千克'},
-      {barcode: '2', productSort: {sid: '1', sname: '水果'}, productName: '香蕉', productPrice: '5', productUnit: '千克'},
-      {barcode: '3', productSort: {sid: '2', sname: '饮料'}, productName: '可乐', productPrice: '5', productUnit: '瓶'}
+    products = [
+      {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'},
+      {barcode: '5', category: {id: '3', name: '服装'}, name: 'NIKE鞋', price: '300', unit: '双'}
     ];
 
     cartItems = [
-      {barcode: '1', productSort: {sid: '1', sname: '水果'}, productName: '苹果', productPrice: '10', productUnit: '千克',count:3}
+      {barcode: '1', category: {id: '1', name: '水果'}, name: '苹果', price: '10', unit: '千克', count: 3}
     ];
 
-    sorts = [
-      {sid: '1', sname: '水果'},
-      {sid: '2', sname: '饮料'},
-      {sid: '3', sname: '服装'},
-      {sid: '4', sname: '蔬菜'}
-    ];
+      categories = [
+        {id: '1', name: '水果'},
+        {id: '2', name: '饮料'},
+        {id: '3', name: '服装'}
+      ];
+  });
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
   });
   it('should has products', function () {
     productService.product(function(callback){
