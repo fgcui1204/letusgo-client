@@ -50,6 +50,15 @@ describe('productService', function () {
     $httpBackend.flush();
   });
 
+  it('it should load categories', function () {
+    $httpBackend.expectGET('/api/categories').respond(200, categories);
+    productService.categories(function (data) {
+      expect(data.length).toBe(3);
+      expect(data[0].name).toEqual('水果');
+    });
+    $httpBackend.flush();
+  });
+
   xit('it should test sorts', function () {
     productService.sort(function(callback){
       callback(sorts);
