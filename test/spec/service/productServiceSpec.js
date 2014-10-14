@@ -13,6 +13,7 @@ describe('productService', function () {
     });
 
     products = [
+      {barcode: '1', category: {id: '1', name: '水果'}, name: '苹果', price: '10', unit: '千克'},
       {barcode: '4', category: {id: '2', name: '饮料'}, name: '雪碧', price: '3', unit: '瓶'},
       {barcode: '5', category: {id: '3', name: '服装'}, name: 'NIKE鞋', price: '300', unit: '双'}
     ];
@@ -31,16 +32,16 @@ describe('productService', function () {
   afterEach(function() {
     $httpBackend.verifyNoOutstandingExpectation();
   });
-  it('should has products', function () {
-    productService.product(function(callback){
-       callback(cartItems);
-      expect(cartItems[0].productName).toEqual('苹果');
-      expect(cartItems[0].count).toEqual(3);
-      expect(cartItems.length).toEqual(1);
-  });
+
+  it('should load  products', function () {
+    $httpBackend.expectGET('/api/items').respond(200, products);
+    productService.product(function (data) {
+      expect(data.length).toBe(3);
+    });
+    $httpBackend.flush();
   });
 
-  it('it should test cartItems', function () {
+  xit('it should test cartItems', function () {
     productService.cartItem(function(callback){
 
       callback(items);
@@ -50,7 +51,7 @@ describe('productService', function () {
     });
   });
 
-  it('it should test sorts', function () {
+  xit('it should test sorts', function () {
     productService.sort(function(callback){
       callback(sorts);
       expect(sorts[0].sname).toEqual('水果');
@@ -58,7 +59,7 @@ describe('productService', function () {
     });
   });
 
-  it('it should test sorts', function () {
+  xit('it should test sorts', function () {
     productService.sort(function(callback){
       callback(sorts);
       expect(sorts[0].sname).toEqual('水果');
